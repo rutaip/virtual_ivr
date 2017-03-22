@@ -23,7 +23,7 @@
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
                 <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }} has-feedback">
-                    <input type="text" id="lastname" class="form-control" placeholder="Apellido" name="lastname" value="{{ old('lastname') }}" autofocus>
+                    <input type="text" id="lastname" class="form-control" placeholder="Apellido" name="lastname" value="{{ old('lastname') }}">
                     @if ($errors->has('lastname'))
                         <span class="help-block">
                                                     <strong>{{ $errors->first('lastname') }}</strong>
@@ -32,7 +32,7 @@
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} has-feedback">
-                    <input type="email" id="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}" autofocus>
+                    <input type="email" id="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}">
                     @if ($errors->has('email'))
                         <span class="help-block">
                                             <strong>{{ $errors->first('email') }}</strong>
