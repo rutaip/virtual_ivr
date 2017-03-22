@@ -21,8 +21,14 @@ class CreateQueueMembersTable extends Migration {
 			$table->integer('penalty')->nullable();
 			$table->integer('paused')->nullable();
 			$table->integer('uniqueid', true);
-			$table->primary(['queue_name','interface']);
 		});
+
+        Schema::table('queue_members', function (Blueprint $table) {
+            $table->primary(['queue_name','interface']);
+
+        });
+
+
 	}
 
 
