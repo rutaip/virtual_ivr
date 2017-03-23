@@ -50,7 +50,7 @@ class PsEndpointsController extends Controller
         $request['aors'] = $request->id;
         $request['auth'] = $request->id;
         $request['disallow'] = 'all';
-        $request['allow'] = implode('&', $request->allow);
+        $request['allow'] = implode(',', $request->allow);
         $request['direct_media'] = 'no';
 
         ps_endpoint::create($request->all());
@@ -91,7 +91,7 @@ class PsEndpointsController extends Controller
     {
         $endpoint = ps_endpoint::findOrFail($id);
 
-        $codecs = explode('&', $endpoint->allow);
+        $codecs = explode(',', $endpoint->allow);
 
         return view('endpoints.edit', compact('endpoint', 'codecs'));
     }
