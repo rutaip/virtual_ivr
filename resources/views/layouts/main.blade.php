@@ -384,6 +384,7 @@
                     <ul class="treeview-menu">
                         <li><a href="{{ url('permissions') }}"><i class="fa fa-circle-o"></i> Permisos</a></li>
                         <li><a href="{{ url('roles') }}"><i class="fa fa-circle-o"></i> Roles</a></li>
+                        <li><a href="{{ url('endpoints') }}"><i class="fa fa-circle-o"></i> Endpoints</a></li>
                     </ul>
                 </li>
                 <li class="treeview">

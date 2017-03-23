@@ -29,6 +29,7 @@ Route::get('dashboard', function () {
 
 Route::resource('phones', 'PhonesController');
 Route::resource('permissions', 'PermissionsController');
+Route::resource('endpoints', 'PSEndpointsController');
 
 
 //Rutas para roles
