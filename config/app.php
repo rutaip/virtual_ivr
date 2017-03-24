@@ -167,6 +167,7 @@ return [
         Jrean\UserVerification\UserVerificationServiceProvider::class,
         Way\Generators\GeneratorsServiceProvider::class,
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
+        Artisaninweb\SoapWrapper\ServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -232,7 +233,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class
+        'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
+        'SoapWrapper' => Artisaninweb\SoapWrapper\Facade::class,
 
     ],
 

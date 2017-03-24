@@ -10,8 +10,8 @@
             <h3><i class="fa fa-warning text-yellow"></i> Oops! No tiene permisos para este sitio</h3>
 
             <p>
-                La pàgina solicitada no existe.
-                Meanwhile, you may <a href="../../index.html">return to dashboard</a> or try using the search form.
+                La página solicitada no existe o no tiene permisos sobre ella.
+                Mientras tanto, {!! Html::link('dashboard', 'regrese a su panel de control') !!} o seleccione una opciópn diferente.
             </p>
 
         </div>

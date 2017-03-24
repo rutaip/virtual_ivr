@@ -17,7 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', function () {
+    return view('dashboard.index');
+});
 
 Route::get('registro', function () {
     return view('auth.registro');
@@ -30,6 +32,14 @@ Route::get('dashboard', function () {
 Route::resource('phones', 'PhonesController');
 Route::resource('permissions', 'PermissionsController');
 Route::resource('endpoints', 'PsEndpointsController');
+Route::resource('ivrs', 'IvrsController');
+
+
+//Rutas DIDWW
+Route::get('dids/new_did', 'DidWWController@new_did');
+Route::get('dids/confirmation/{id}', 'DidWWController@confirmation');
+Route::resource('dids', 'DidWWController');
+
 
 
 //Rutas para roles
