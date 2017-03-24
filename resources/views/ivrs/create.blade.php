@@ -14,9 +14,9 @@
                         <div class="box-tools no-margin pull-right"></div>
                     </div>
                     <!-- /.box-header -->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="box-body">
+                    <div class="box-body no-padding">
+                        <div class="row">
+                            <div class="col-md-6">
                                 <!--Paquete 1 -->
                                 <div class="row">
                                     <div class="col-md-2"></div>
@@ -87,35 +87,36 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="box-body">
-                                Está a unos pasos de la creación de su Virtual IVR!
+                            <div class="col-md-6">
 
-                                Antes de iniciar valide que tiene saldo suficiente en su cuenta para crear un Virtual
-                                IVR
-                                <br><br>
-                                Pasos:
-                                <br>
+                                    Está a unos pasos de la creación de su Virtual IVR!
 
-                                <ul class="treeview-menu">
-                                    <li>Seleccione el paquete</li>
-                                    <li>Seleccione su número, periodo y autorenovación</li>
-                                    <li>Ingrese sus números telefónicos a los cuales se transferirá</li>
-                                    <li>Añada el audio de su menú</li>
-                                    <li>Configure las opciones de su menú</li>
-                                </ul>
+                                    Antes de iniciar valide que tiene saldo suficiente en su cuenta para crear un
+                                    Virtual
+                                    IVR
+                                    <br><br>
+                                    Pasos:
+                                    <br>
 
-                                Seleccione el plan deseao del panel del lado izquierdo para comenzar.
+                                    <ul class="treeview-menu">
+                                        <li>Seleccione el paquete</li>
+                                        <li>Seleccione su número, periodo y autorenovación</li>
+                                        <li>Ingrese sus números telefónicos a los cuales se transferirá</li>
+                                        <li>Añada el audio de su menú</li>
+                                        <li>Configure las opciones de su menú</li>
+                                    </ul>
+
+                                    Seleccione el plan deseao del panel del lado izquierdo para comenzar.
+
                             </div>
                         </div>
                     </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                    </div>
+                    <!-- /.box-footer -->
                 </div>
             </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix">
-            </div>
-            <!-- /.box-footer -->
         </div>
         <!-- /.box -->
         <!-- /.col -->
