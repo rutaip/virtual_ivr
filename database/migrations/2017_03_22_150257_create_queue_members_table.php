@@ -20,8 +20,10 @@ class CreateQueueMembersTable extends Migration {
 			$table->string('state_interface', 80)->nullable();
 			$table->integer('penalty')->nullable();
 			$table->integer('paused')->nullable();
-			$table->integer('uniqueid', true);
 			$table->primary(['queue_name','interface']);
+            $table->integer('uniqueid');
+            $table->unique('uniqueid');
+            $table->increments('uniqueid')->change();
 		});
 	}
 
