@@ -220,7 +220,7 @@
                 <div class="row" style="text-align: center">
                 {{Html::link('#carousel-example-generic', 'Inicio', ['data-slide-to' => '0', 'class' => 'btn', 'style' => 'font-size:20px;'])}} |
                 {{Html::link('#carousel-example-generic', '¿Cómo funciona?', ['data-slide-to' => '1', 'class' => 'btn', 'style' => 'font-size:20px;'])}} |
-                {{Html::link('#carousel-example-generic', '¿Cuales son los paquetes?', ['data-slide-to' => '2', 'class' => 'btn', 'style' => 'font-size:20px;'])}} |
+                {{Html::link('#carousel-example-generic', '¿Cuáles son los paquetes?', ['data-slide-to' => '2', 'class' => 'btn', 'style' => 'font-size:20px;'])}} |
                 {{Html::link('#carousel-example-generic', '¿Cómo contrato?', ['data-slide-to' => '3', 'class' => 'btn', 'style' => 'font-size:20px;'])}}
                 </div>
             </div>
