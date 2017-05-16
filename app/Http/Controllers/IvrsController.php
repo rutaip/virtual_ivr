@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\DidWw;
 
 class IvrsController extends Controller
 {
@@ -28,7 +29,11 @@ class IvrsController extends Controller
     public function create()
     {
 
-        return view('ivrs.create');
+        $cities = DidWw::where('city_prefix', '<>', '800')
+            ->where('isavailable', '1')
+            ->get();
+
+        return view('ivrs.create', compact('cities'));
     }
 
     public function store(PsEndpointRequest $request)

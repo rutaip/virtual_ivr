@@ -2,40 +2,51 @@
 
 @section('content')
 
-    <script>
-        $(function () {
-            $('#paquetes a').click(function (e) {
-                e.preventDefault();
-                $('a[href="' + $(this).attr('href') + '"]').tab('show');
-            })
-        });
-    </script>
-
     <!-- Main content -->
     <section class="content">
-        <div>
 
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#paquetes" aria-controls="paquetes" role="tab" data-toggle="tab">Paquete</a></li>
-                <li role="presentation"><a href="#extensiones" aria-controls="extensiones" role="tab" data-toggle="tab">Extensiones</a></li>
-                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-                <li role="presentation"><a href="#dids" aria-controls="settings" role="tab" data-toggle="tab">Número DID</a></li>
-            </ul>
+        <div class="row">
+            <!-- /.col -->
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Confirmación de pago</h3>
+                        <div class="box-tools no-margin pull-right"></div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <div class="row">
+                            <div class="col-md-6">
 
+                            </div>
+                            <div class="col-md-6">
+
+
+                                Pago exitoso
+                                <br><br>
+                                <br>
+
+                                <ul class="treeview-menu">
+                                    <li>Seleccione el paquete</li>
+                                    <li>Seleccione su número, periodo y autorenovación</li>
+                                    <li>Ingrese sus números telefónicos a los cuales se transferirá</li>
+                                    <li>Añada el audio de su menú</li>
+                                    <li>Configure las opciones de su menú</li>
+                                </ul>
+
+                                Seleccione el plan deseao del panel del lado izquierdo para comenzar.
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                    </div>
+                    <!-- /.box-footer -->
+                </div>
+            </div>
         </div>
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="paquetes">
-                @include('ivrs.combo')
-            </div>
-            <div role="tabpanel" class="tab-pane" id="extensiones">
-                @include('ivrs.extensiones')
-            </div>
-            <div role="tabpanel" class="tab-pane" id="dids">
-                @include('ivrs.dids')
-            </div>
-        </div>
-
+        <!-- /.box -->
         <!-- /.col -->
         <!-- /.row -->
     </section>
@@ -120,7 +131,5 @@
             </div>
         </div>
     </div>
-
-
 
 @endsection

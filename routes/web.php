@@ -17,17 +17,29 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', function () {
-    return view('dashboard.index');
+Route::get('/home', 'DashboardController@index');
+Route::resource('dashboard', 'DashboardController');
+
+
+Route::get('store/checkout', function () {
+    return view('store.index');
 });
+Route::get('store/confirmation', function () {
+    return view('store.confirmation');
+});
+
+Route::resource('payments', 'PaymentsController');
+
+//Paypal
+Route::post('paypal/create-payment', 'PayPalController@CreatePayment');
+Route::post('paypal/execute-payment', 'PayPalController@ExecutePayment');
+Route::get('paypal/test', 'PayPalController@test');
+
 
 Route::get('registro', function () {
     return view('auth.registro');
 });
 
-Route::get('dashboard', function () {
-    return view('dashboard.index');
-});
 
 Route::resource('phones', 'PhonesController');
 Route::resource('permissions', 'PermissionsController');

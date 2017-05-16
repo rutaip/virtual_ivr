@@ -293,7 +293,9 @@
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    {{ Form::open(array('url' => '/logout')) }}
+                                    {{ Form::submit('Salir', ['class' => 'btn btn-default btn-flat']) }}
+                                    {{ Form::close() }}
                                 </div>
                             </li>
                         </ul>
@@ -344,6 +346,7 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
+                        <li><a href="{{ url('payments') }}"><i class="fa fa-circle-o"></i> Compras</a></li>
                         <li><a href="{{ url('phones') }}"><i class="fa fa-circle-o"></i> Extensiones</a></li>
                         <li><a href="{{ url('dids') }}"><i class="fa fa-circle-o"></i> DIDs</a></li>
                         <li><a href="{{ url('ivrs') }}"><i class="fa fa-circle-o"></i> Virtual IVR</a></li>
