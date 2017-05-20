@@ -77,28 +77,4 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
-
-    /**
-     * Handle a registration request for the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function register(Request $request)
-    {
-        $this->validator($request->all())->validate();
-
-        $user = $this->create($request->all());
-
-        event(new Registered($user));
-
-        $this->guard()->login($user);
-
-        UserVerification::generate($user);
-
-        UserVerification::send($user, 'Fastcode Virtual IVR verificación');
-
-        return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
-    }
 }

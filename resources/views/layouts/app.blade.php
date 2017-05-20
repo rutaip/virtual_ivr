@@ -66,7 +66,10 @@
         </div><!--/.container-fluid -->
     </nav>
 
-@yield('content')
+    @include('partials.flash')
+@include('errors.error')
+
+    @yield('content')
 
 </div> <!-- /container -->
 
@@ -82,5 +85,10 @@
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 {!! Html::script('js/ie10-viewport-bug-workaround.js') !!}
 </body>
+<script>
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
 </html>
+
+
 

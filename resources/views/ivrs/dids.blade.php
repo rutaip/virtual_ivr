@@ -20,30 +20,18 @@
                                 </tr>
                                 @foreach($cities as $city)
                                     <tr>
-                                        {!! Form::open(array('url' => 'dids', 'role' => 'form')) !!}
                                         <td>{{$city->country_name}}</td>
                                         <td>{{$city->city_name}}</td>
                                         <td>{{$city->city_prefix}}</td>
                                         <td class="btn-toolbar">
-                                            {!! Form::hidden('iso', $city->country_iso) !!}
-                                            {!! Form::hidden('city_prefix', $city->city_prefix) !!}
-                                            {!! Form::hidden('city_id', $city->city_id) !!}
-                                            {!! Form::submit('Seleccionar', ['class' => 'btn btn-sm btn-flat pull-left']) !!}
+                                            {{ Form::radio('did', $city->city_id, null, ['id' => $city->city_id]) }}
                                         </td>
-                                        {!! Form::close() !!}
                                     </tr>
                                 @endforeach
                             </table>
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer clearfix">
-                            <ul class="pagination pagination-sm no-margin pull-right">
-                                <li><a href="#">&laquo;</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">&raquo;</a></li>
-                            </ul>
                         </div>
                         <!-- /.box-footer -->
 
@@ -74,6 +62,14 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
+                <div class="btn-toolbar">
+
+
+                    <button class="btn btn-flat btn-primary pull-right" onclick="resumen()">Siguiente</button>
+
+                    <button class="btn btn-flat btn-primary pull-right" onclick="menu()">Regresar</button>
+                </div>
+
             </div>
             <!-- /.box-footer -->
         </div>

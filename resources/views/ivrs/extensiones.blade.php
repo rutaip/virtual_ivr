@@ -12,7 +12,6 @@
                     <div class="col-md-6">
                         <div class="box-body">
                             <!-- form start -->
-                            {!! Form::open(array('url' => 'phones', 'role' => 'form')) !!}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -67,11 +66,9 @@
                         </div>
 
                         <div class="box-footer">
-                            {!! Form::submit('Crear extensión', ['class' => 'btn btn-flat btn-primary']) !!}
-                            {{Html::link('phones', 'Cancelar', array('class' => 'btn btn-flat btn-danger'))}}
 
                         </div>
-                        {!! Form::close() !!}
+
                     </div>
                     <div class="col-md-6">
 
@@ -99,6 +96,13 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
+                <div class="btn-toolbar">
+
+
+                    <button class="btn btn-flat btn-primary pull-right" onclick="audios()">Siguiente</button>
+
+                    <button class="btn btn-flat btn-primary pull-right" onclick="paquetes()">Regresar</button>
+                </div>
             </div>
             <!-- /.box-footer -->
         </div>
