@@ -244,13 +244,12 @@
 
     <script type="text/javascript">
         var LHCChatOptions = {};
-        LHCChatOptions.opt = {widget_height:340,widget_width:300,popup_height:520,popup_width:500,domain:'virtualivr.fastcode.today'};
+        LHCChatOptions.opt = {widget_height:340,widget_width:300,popup_height:520,popup_width:500};
         (function() {
-            var _l = '';var _m = document.getElementsByTagName('meta');var _cl = '';for (i=0; i < _m.length; i++) {if ( _m[i].getAttribute('http-equiv') == 'content-language' ) {_cl = _m[i].getAttribute('content');}}if (document.documentElement.lang != '') _l = document.documentElement.lang;if (_cl != '' && _cl != _l) _l = _cl;if (_l == undefined || _l == '') {_l = 'esp/';} else {_l = _l[0].toLowerCase() + _l[1].toLowerCase(); if ('eng' == _l) {_l = ''} else {_l = _l + '/';}}
             var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
             var referrer = (document.referrer) ? encodeURIComponent(document.referrer.substr(document.referrer.indexOf('://')+1)) : '';
             var location  = (document.location) ? encodeURIComponent(window.location.href.substring(window.location.protocol.length)) : '';
-            po.src = '//help.fastcode.today/index.php/'+_l+'chat/getstatus/(click)/internal/(position)/bottom_right/(ma)/br/(top)/350/(units)/pixels/(leaveamessage)/true/(department)/1?r='+referrer+'&l='+location;
+            po.src = '//help.fastcode.today/index.php/esp/chat/getstatus/(click)/internal/(position)/bottom_right/(ma)/br/(hide_offline)/true/(top)/350/(units)/pixels/(leaveamessage)/true/(department)/1?r='+referrer+'&l='+location;
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
         })();
     </script>
