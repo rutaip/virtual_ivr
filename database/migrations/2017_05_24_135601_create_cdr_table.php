@@ -15,8 +15,25 @@ class CreateCdrTable extends Migration
     {
         Schema::create('cdr', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('calldate')->default();
-
+            $table->dateTime('calldate')->default(\Carbon\Carbon::now('America/Mexico_City'));
+            $table->string('clid', 80)->default('');
+            $table->string('src', 80)->default('');
+            $table->string('dst', 80)->default('');
+            $table->string('dcontext', 80)->default('');
+            $table->string('channel', 80)->default('');
+            $table->string('dstchannel', 80)->default('');
+            $table->string('lastapp', 80)->default('');
+            $table->string('lastdata', 80)->default('');
+            $table->integer('duration')->default('0');
+            $table->integer('billsec')->default('0');
+            $table->string('disposition', 45)->default('');
+            $table->integer('amaflags')->default('0');
+            $table->string('accountcode', 20)->default('');
+            $table->string('uniqueid', 32)->default('');
+            $table->string('userfield', 255)->default('');
+            $table->string('peeraccount', 20)->default('');
+            $table->string('linkedid', 32)->default('');
+            $table->integer('sequence')->default('0');
             $table->timestamps();
         });
     }
