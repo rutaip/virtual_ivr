@@ -34,7 +34,6 @@ class CreateCdrTable extends Migration
             $table->string('peeraccount', 20)->default('');
             $table->string('linkedid', 32)->default('');
             $table->integer('sequence')->default('0');
-            $table->timestamps();
         });
     }
 
