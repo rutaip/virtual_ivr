@@ -36,6 +36,7 @@ class CreateCdrTable extends Migration
             $table->integer('sequence')->default('0');
             $table->string('srcdid', 80)->default('');
             $table->string('dstdid', 80)->default('');
+            $table->string('calltype', 80)->default('');
             $table->string('hangupcause', 80)->default('');
 
 
