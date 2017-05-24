@@ -34,6 +34,12 @@ class CreateCdrTable extends Migration
             $table->string('peeraccount', 20)->default('');
             $table->string('linkedid', 32)->default('');
             $table->integer('sequence')->default('0');
+            $table->string('srcdid', 80)->default('');
+            $table->string('dstdid', 80)->default('');
+            $table->string('hangupcause', 80)->default('');
+
+
+
         });
     }
 
