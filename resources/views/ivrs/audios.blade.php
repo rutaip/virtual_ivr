@@ -17,21 +17,22 @@
                                     <div class="form-group">
                                         {!! Form::label('bienvenida', 'Audio Bienvenida') !!}
                                         <p class="help-block">Seleccione un audio desde su equipo</p>
-                                        {!! Form::file('bienvenida', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'bienvenida.mp3', 'autofocus']) !!}
+                                        <input type="file" name="bienvenida" id="bienvenida" accept="audio/*" @change="audio_1">
+
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         {!! Form::label('horario', 'Horario de atención') !!}
                                         <p class="help-block">Seleccione un audio desde su equipo</p>
-                                        {!! Form::file('horario', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'casa, oficina, celular']) !!}
+                                        <input type="file" name="horario" id="horario" accept="audio/*" @change="audio_2">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         {!! Form::label('despedida', 'Audio Despedida') !!}
                                         <p class="help-block">Seleccione un audio desde su equipo</p>
-                                        {!! Form::file('despedida', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => '5514253647', 'autofocus']) !!}
+                                        <input type="file" name="despedida" id="despedida" accept="audio/*" @change="audio_3">
                                     </div>
                                 </div>
                             </div>
@@ -63,11 +64,8 @@
             <!-- /.box-body -->
             <div class="box-footer clearfix">
                 <div class="btn-toolbar">
-
-
-                    <button class="btn btn-flat btn-primary pull-right" onclick="menu()">Siguiente</button>
-
-                    <button class="btn btn-flat btn-primary pull-right" onclick="extensiones()">Regresar</button>
+                    <a href="#" class="btn btn-flat btn-primary pull-right" onclick="menu()">Siguiente</a>
+                    <a href="#" class="btn btn-flat btn-primary pull-right" onclick="extensiones()">Anterior</a>
                 </div>
             </div>
             <!-- /.box-footer -->

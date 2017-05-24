@@ -45,20 +45,4 @@
     </section>
     <!-- /.content -->
 
-    <script>
-        $(document).ready(function(){
-            $('form').submit(function(e){
-                e.preventDefault();
-                url = $(this).parent().attr('action');
-                BootstrapDialog.confirm('Are you sure you want to delete?', function(result){
-                    if(result) {
-                        $.ajax(url);
-                    }
-                });
-            });
-
-        });
-
-    </script>
-
 @endsection

@@ -102,13 +102,13 @@
                                     </tr>
                                     <tr>
 
-                                        <th>{!! Form::radio('combo', '1', null, ['required' => 'required', 'id' => 'r1']) !!}
+                                        <th>{!! Form::radio('combo', '490', null, ['id' => 'r1', 'v-model' => 'combo']) !!}
                                             $490
                                         </th>
-                                        <th>{!! Form::radio('combo', '2', null, ['required' => 'required', 'id' => 'r2']) !!}
+                                        <th>{!! Form::radio('combo', '750', null, ['id' => 'r2', 'v-model' => 'combo']) !!}
                                             $750
                                         </th>
-                                        <th>{!! Form::radio('combo', '3', true, ['required' => 'required', 'id' => 'r3']) !!}
+                                        <th>{!! Form::radio('combo', '950', true, ['id' => 'r3', 'v-model' => 'combo']) !!}
                                             $950
                                         </th>
                                     </tr>
@@ -123,7 +123,7 @@
             <!-- /.box-body -->
             <div class="box-footer clearfix">
                 <div class="pull-right">
-                    <button class="btn btn-flat btn-primary" onclick="extensiones()">Siguiente</button>
+                    <a href="#" class="btn btn-flat btn-primary pull-right" onclick="extensiones()">Siguiente</a>
                 </div>
             </div>
             <!-- /.box-footer -->

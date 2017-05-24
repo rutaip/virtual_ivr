@@ -14,9 +14,26 @@
                             <!-- form start -->
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        Opciones de Menu
-                                    </div>
+                                    <h4>Paquete Seleccionado</h4>
+                                    <ul>
+                                        <li>$ @{{ combo }}</li>
+                                    </ul>
+                                    <h4>Extensiones creadas</h4>
+                                    <ul>
+                                        <li>Telefono 1: @{{ Phone_1 }}</li>
+                                        <li>Telefono 2: @{{ Phone_2 }}</li>
+                                        <li>Telefono 3: @{{ Phone_3 }}</li>
+                                    </ul>
+                                    <h4>Audios</h4>
+                                    <ul>
+                                        <li>@{{ bienvenida }}</li>
+                                        <li>@{{ horario }}</li>
+                                        <li>@{{ despedida }}</li>
+                                    </ul>
+                                    <h4>DID</h4>
+                                    <ul>
+                                        <li>Número: @{{ DID }}</li>
+                                    </ul>
                                 </div>
                             </div>
                             <!-- /.box-body -->
@@ -28,9 +45,10 @@
 
                     </div>
                     <div class="col-md-6">
+                        <h3>Resumen y forma de pago</h3>
 
-                        En esta sección deberá configurar su menú relacionando las opciones de su menú de Bienvenida con
-                        las extensiones que configuró en el paso de extensiones
+                        Antes de finalizar revise su pedido en el resumen del lado izquierdo.
+                        Seleccione su método de pago
                         <br>
                         <br>
                         Una vez seleccionada su opción continue con el boton siguiente:
@@ -41,10 +59,9 @@
             <div class="box-footer clearfix">
                 <div class="btn-toolbar">
 
+                    {!! Form::submit('Confirmar', ['class' => 'btn  btn-flat btn-primary pull-right']) !!}
 
-                    <button class="btn btn-flat btn-primary pull-right" onclick="Confirmar()">Confirmar</button>
-
-                    <button class="btn btn-flat btn-primary pull-right" onclick="dids()">Regresar</button>
+                    <a href="#" class="btn btn-flat btn-primary pull-right" onclick="dids()">Anterior</a>
                 </div>
             </div>
             <!-- /.box-footer -->

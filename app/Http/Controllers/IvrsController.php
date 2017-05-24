@@ -36,8 +36,10 @@ class IvrsController extends Controller
         return view('ivrs.create', compact('cities'));
     }
 
-    public function store(PsEndpointRequest $request)
+    public function store(Request $request)
     {
+
+        return $request->all();
         /*if  (Gate::denies('create', $request)) {
 
             abort(403, 'Sorry, not allowed');

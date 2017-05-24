@@ -15,16 +15,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        {!! Form::label('phone', 'Teléfono 1') !!}
+                                        {!! Form::label('phone_1', 'Teléfono 1') !!}
                                         <p class="help-block">Número a 10 digitos</p>
-                                        {!! Form::text('phone', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => '5514253647', 'autofocus']) !!}
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        {!! Form::label('label', 'Etiqueta Telefono 1') !!}
-                                        <p class="help-block">Identificador del teléfono</p>
-                                        {!! Form::text('label', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'casa, oficina, celular']) !!}
+                                        {!! Form::text('phone_1', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => '5514253647', 'autofocus', 'v-model' => 'Phone_1', '@change' => 'phone_1']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -32,16 +25,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        {!! Form::label('phone', 'Teléfono 2') !!}
+                                        {!! Form::label('phone_2', 'Teléfono 2') !!}
                                         <p class="help-block">Número a 10 digitos</p>
-                                        {!! Form::text('phone', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => '5514253647', 'autofocus']) !!}
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        {!! Form::label('label', 'Etiqueta Telefono 2') !!}
-                                        <p class="help-block">Identificador del teléfono</p>
-                                        {!! Form::text('label', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'casa, oficina, celular']) !!}
+                                        {!! Form::text('phone_2', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => '5514253647', 'v-model' => 'Phone_2', '@change' => 'phone_2']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -49,16 +35,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        {!! Form::label('phone', 'Teléfono 3') !!}
+                                        {!! Form::label('phone_3', 'Teléfono 3') !!}
                                         <p class="help-block">Número a 10 digitos</p>
-                                        {!! Form::text('phone', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => '5514253647', 'autofocus']) !!}
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        {!! Form::label('label', 'Etiqueta Telefono 3') !!}
-                                        <p class="help-block">Identificador del teléfono</p>
-                                        {!! Form::text('label', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'casa, oficina, celular']) !!}
+                                        {!! Form::text('phone_3', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => '5514253647', 'v-model' => 'Phone_3', '@change' => 'phone_3']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -97,11 +76,8 @@
             <!-- /.box-body -->
             <div class="box-footer clearfix">
                 <div class="btn-toolbar">
-
-
-                    <button class="btn btn-flat btn-primary pull-right" onclick="audios()">Siguiente</button>
-
-                    <button class="btn btn-flat btn-primary pull-right" onclick="paquetes()">Regresar</button>
+                    <a href="#" class="btn btn-flat btn-primary pull-right" onclick="audios()">Siguiente</a>
+                    <a href="#" class="btn btn-flat btn-primary pull-right" onclick="paquetes()">Anterior</a>
                 </div>
             </div>
             <!-- /.box-footer -->

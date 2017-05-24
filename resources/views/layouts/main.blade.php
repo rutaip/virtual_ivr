@@ -26,6 +26,8 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- vue js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -610,7 +612,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->
-{!! Html::script('js/jquery-2.2.3.min.js') !!}
+{!! Html::script('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js') !!}
 <!-- Bootstrap 3.3.6 -->
 {!! Html::script('js/bootstrap.min.js') !!}
 <!-- FastClick -->
@@ -626,9 +628,6 @@
 {!! Html::script('js/jquery.slimscroll.min.js') !!}
 <!-- ChartJS 1.0.1 -->
 {!! Html::script('js/Chart.min.js') !!}
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-{!! Html::script('js/adminlte/app.min.js') !!}
-{!! Html::script('js/adminlte/dashboard2.js') !!}
 <!-- AdminLTE for demo purposes -->
 {!! Html::script('js/demo.js') !!}
 <script>

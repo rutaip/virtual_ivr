@@ -24,7 +24,7 @@
                                         <td>{{$city->city_name}}</td>
                                         <td>{{$city->city_prefix}}</td>
                                         <td class="btn-toolbar">
-                                            {{ Form::radio('did', $city->city_id, null, ['id' => $city->city_id]) }}
+                                            {{ Form::radio('did', $city->city_prefix . '-' . $city->city_name, null, ['v-model' => 'DID']) }}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -63,11 +63,8 @@
             <!-- /.box-body -->
             <div class="box-footer clearfix">
                 <div class="btn-toolbar">
-
-
-                    <button class="btn btn-flat btn-primary pull-right" onclick="resumen()">Siguiente</button>
-
-                    <button class="btn btn-flat btn-primary pull-right" onclick="menu()">Regresar</button>
+                    <a href="#" class="btn btn-flat btn-primary pull-right" onclick="resumen()">Siguiente</a>
+                    <a href="#" class="btn btn-flat btn-primary pull-right" onclick="menu()">Anterior</a>
                 </div>
 
             </div>
