@@ -8,6 +8,7 @@
         <div class="row">
             <!-- /.col -->
             <div class="col-md-12">
+                {!! Form::open(array('url' => 'store', 'role' => 'form')) !!}
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Realicemos tu pago</h3>
@@ -17,19 +18,48 @@
                     <div class="box-body no-padding">
                         <div class="row">
                             <div class="col-md-6">
+                                <div class="box-body">
+                                    <!-- form start -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                {!! Form::label('amount', 'Seleccione un Plan') !!}
+                                                <p class="help-block">Elija el plan de acuerdo a sus necesidades</p>
+                                                {!! Form::select('amount', ['490' => 'Paquete $ 490 + iva', '750' => 'Paquete $ 750 + iva', '950' => 'Paquete $ 950 + iva'], null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Virtual IVR', 'autofocus']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                {!! Form::label('meses', 'Meses') !!}
+                                                <p class="help-block">Elija la duración de su plan (meses)</p>
+                                                {!! Form::selectRange('meses', 1, 12, null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Duración']) !!}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                {!! Form::label('provider', 'Tipo de pago') !!}
+                                                <p class="help-block">Elija su método de pago</p>
+                                                {!! Form::select('provider', ['paypal' => 'Paypal', 'payu' => 'PayU'], null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Medio de Pago']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
 
                             </div>
                             <div class="col-md-6">
 
-                                {{Html::script('https://www.paypalobjects.com/api/checkout.js')}}
+                                <h4>Cómo deseas realizar tu pago?</h4>
 
-                                Cómo deseas realizar tu pago?
-
-                                Antes de iniciar valide que tiene saldo suficiente en su cuenta para crear un
-                                Virtual
-                                IVR
+                                Para tu seguridad y confianza utilizamos la comunicación del sitio está encriptada mediante certificados ssl (https).
                                 <br><br>
-                                <div id="paypal-button"></div>
                                 <br>
 
                                 <ul class="treeview-menu">
@@ -47,9 +77,11 @@
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
+                        {!! Form::submit('Realizar pago', ['class' => 'btn  btn-flat btn-primary pull-right']) !!}
                     </div>
                     <!-- /.box-footer -->
                 </div>
+                {!! Form::close() !!}
             </div>
         </div>
         <!-- /.box -->
@@ -137,50 +169,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        paypal.Button.render({
-
-            env: 'sandbox', // Optional: specify 'sandbox' environment
-
-            locale: 'es_MX',
-
-            style: {
-                size: 'medium',
-                color: 'blue',
-                shape: 'rect',
-                label: 'checkout'
-            },
-
-            client: {
-                sandbox:    'AZe9DiThNRisC5g4u2qYAQQovHSZMoOqnjLFUpGLgz5Dc27fJ2OOFkPq79k3TRLojktSESm_6iUWxHrX',
-                production: 'AV3zqgfOG2_r8J3y22VFnNW4vpmHCOZIQbks41Ubq3Mkj2Epqtq7-XJadGHvDnNdHz55f_S1gZw_8RrA'
-            },
-
-
-            payment: function(resolve, reject) {
-
-                var CREATE_PAYMENT_URL = '{{ url('paypal/create-payment') }}';
-
-                return paypal.request.post(CREATE_PAYMENT_URL, {_token: '{{csrf_token()}}' })
-                    .then(function(data) { console.log(data); resolve(data.paymentID); })
-                    .catch(function(err) { reject(err); });
-            },
-
-            onAuthorize: function(data) {
-
-                // Note: you can display a confirmation page before executing
-
-                var EXECUTE_PAYMENT_URL = '{{ url('paypal/execute-payment') }}';
-
-                return paypal.request.post(EXECUTE_PAYMENT_URL,
-                    { paymentID: data.paymentID, payerID: data.payerID, _token: '{{csrf_token()}}' })
-
-                    .then(function(data) { window.location = '{{url('store/confirmation')}}' })
-                    .catch(function(err) { console.log('esta transaccion es erronea') });
-            }
-
-        }, '#paypal-button');
-    </script>
 
 @endsection

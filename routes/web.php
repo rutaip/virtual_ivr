@@ -20,13 +20,9 @@ Auth::routes();
 Route::get('/home', 'DashboardController@index');
 Route::resource('dashboard', 'DashboardController');
 
+Route::get('store/confirmation/{id}', 'StoreController@confirmation');
+Route::resource('store', 'StoreController');
 
-Route::get('store/checkout', function () {
-    return view('store.index');
-});
-Route::get('store/confirmation', function () {
-    return view('store.confirmation');
-});
 
 Route::resource('payments', 'PaymentsController');
 

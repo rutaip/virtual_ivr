@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Payment;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\Input;
 
 
 class PayPalController extends Controller
@@ -19,6 +21,15 @@ class PayPalController extends Controller
 
     public function CreatePayment()
     {
+
+        $subtotal = $_POST['amount'];
+        $order = $_POST['order'];
+        $customer = $_POST['user'];
+        $months = $_POST['months'];
+        $iva = '1.16';
+        $total = $subtotal * $iva;
+        $tax = $total - $subtotal;
+
 
         $url = 'https://api.sandbox.paypal.com/';
         $paypal_userid = env('PAYPAL_CLIENTID');
@@ -103,20 +114,20 @@ class PayPalController extends Controller
             ],
             'transactions' => array([
                 'amount' => [
-                    'total' => '33.00',
+                    'total' => number_format($total, 2),
                     'currency' => 'MXN',
                     'details' => [
-                        'subtotal' => '30.00',
-                        'tax' => '1.00',
-                        'shipping' => '1.00',
-                        'handling_fee' => '1.00',
-                        'shipping_discount' => '-1.00',
-                        'insurance' => '1.00'
+                        'subtotal' => number_format($subtotal, 2),
+                        'tax' => number_format($tax, 2),
+                        'shipping' => '0.00',
+                        'handling_fee' => '0.00',
+                        'shipping_discount' => '0.00',
+                        'insurance' => '0.00'
                     ]
                 ],
                 'description' => 'Descripción del pago',
                 'custom' => 'EBAY_EMS_90048630024435',
-                'invoice_number' => '487875896121',
+                'invoice_number' => $order,
                 'payment_options' => [
                     'allowed_payment_method' => 'INSTANT_FUNDING_SOURCE'
                 ],
@@ -124,10 +135,10 @@ class PayPalController extends Controller
                 'item_list' => [
                     'items' => array([
                         'name' => 'Virtual IVR',
-                        'description' => 'Pago de Servicio Virtual IVR Paquete 455',
+                        'description' => 'Pago de Servicio Virtual IVR Paquete ' . number_format($subtotal,2) . ' + iva x ' . $months,
                         'quantity' => '1',
-                        'price' => '30.00',
-                        'tax' => '1.00',
+                        'price' => number_format($subtotal,2),
+                        'tax' => number_format($tax,2),
                         'sku' => '1',
                         'currency' => 'MXN'
                     ])
@@ -138,7 +149,7 @@ class PayPalController extends Controller
                 'cancel_url' => 'http://www.paypal.com/cancel'
 
             ],
-            'note_to_payer' => 'Contactenos para cualquier pregunta'
+            'note_to_payer' => 'Contactenos en caso de preguntas'
         ];
 
         $client = new Client([
@@ -173,6 +184,10 @@ class PayPalController extends Controller
         $elements = json_decode($response->getBody());
 
         $PaymentId = ['paymentID' => $elements->id];
+
+
+
+        Payment::create(['user_id' => $customer, 'payment_method' => 'paypal', 'amount' => $subtotal, 'status' => '1', 'transaction_id' => $elements->id, 'order_id' => $order]);
 
         return $PaymentId;
 

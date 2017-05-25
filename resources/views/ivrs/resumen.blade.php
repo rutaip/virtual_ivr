@@ -49,9 +49,8 @@
 
                         Antes de finalizar revise su pedido en el resumen del lado izquierdo.
                         Seleccione su método de pago
-                        <br>
-                        <br>
-                        Una vez seleccionada su opción continue con el boton siguiente:
+
+
                     </div>
                 </div>
             </div>

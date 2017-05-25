@@ -322,7 +322,8 @@
                 </div>
                 <div class="pull-left info">
                     <p>{{Auth::user()->name}} {{Auth::user()->lastname}}</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i>  Balance: $ {{ number_format($balance, 2)}}</a>
+
                 </div>
             </div>
             <!-- search form -->
@@ -630,6 +631,9 @@
 {!! Html::script('js/Chart.min.js') !!}
 <!-- AdminLTE for demo purposes -->
 {!! Html::script('js/demo.js') !!}
+@yield('scripts')
+
+
 <script>
     $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 </script>

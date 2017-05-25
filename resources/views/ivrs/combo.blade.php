@@ -102,13 +102,13 @@
                                     </tr>
                                     <tr>
 
-                                        <th>{!! Form::radio('combo', '490', null, ['id' => 'r1', 'v-model' => 'combo']) !!}
+                                        <th>{!! Form::radio('combo', '490', null, ['id' => 'r1', 'v-model' => 'combo', '@change' => 'combo_amount']) !!}
                                             $490
                                         </th>
-                                        <th>{!! Form::radio('combo', '750', null, ['id' => 'r2', 'v-model' => 'combo']) !!}
+                                        <th>{!! Form::radio('combo', '750', null, ['id' => 'r2', 'v-model' => 'combo', '@change' => 'combo_amount']) !!}
                                             $750
                                         </th>
-                                        <th>{!! Form::radio('combo', '950', true, ['id' => 'r3', 'v-model' => 'combo']) !!}
+                                        <th>{!! Form::radio('combo', '950', true, ['id' => 'r3', 'v-model' => 'combo', '@change' => 'combo_amount']) !!}
                                             $950
                                         </th>
                                     </tr>

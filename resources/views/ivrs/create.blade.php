@@ -51,8 +51,14 @@
         <!-- /.row -->
     </section>
     <!-- /.content -->
+@endsection
+
+@section('scripts')
 
     <script>
+
+        var combo_amount = '';
+
         function paquetes() {
             $('[href="#paquetes"]').tab('show');
         }
@@ -81,9 +87,6 @@
                 Phone_1 : '',
                 Phone_2 : '',
                 Phone_3 : '',
-                Label_1 : '',
-                Label_2 : '',
-                Label_3 : '',
                 DID : '',
                 combo : '',
                 bienvenida : '',
@@ -97,7 +100,7 @@
                 audio_1(e) {
                     var files = e.target.files || e.dataTransfer.files;
                     if (!files.length)
-                    return; this.bienvenida = files[0].name;
+                        return; this.bienvenida = files[0].name;
                 },
                 audio_2(e) {
                     var files = e.target.files || e.dataTransfer.files;
@@ -120,12 +123,14 @@
                 phone_3(){
                     this.options.push({text : 'Telefono 3', value: this.Phone_3});
 
+                },
+                combo_amount(){
+                    window.combo_amount = this.amount;
                 }
             }
         });
 
 
     </script>
-
 
 @endsection
