@@ -52,7 +52,9 @@ class User extends Authenticatable
         }
 
         return !! $role->intersect($this->roles)->count();
+    }
 
-
+    public function saldo(){
+        return $this->hasOne(UserBalance::class);
     }
 }

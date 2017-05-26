@@ -21,6 +21,7 @@ Route::get('/home', 'DashboardController@index');
 Route::resource('dashboard', 'DashboardController');
 
 Route::get('store/confirmation/{id}', 'StoreController@confirmation');
+Route::get('store/denied/{id}', 'StoreController@denied');
 Route::resource('store', 'StoreController');
 
 
@@ -30,11 +31,6 @@ Route::resource('payments', 'PaymentsController');
 Route::post('paypal/create-payment', 'PayPalController@CreatePayment');
 Route::post('paypal/execute-payment', 'PayPalController@ExecutePayment');
 Route::get('paypal/test', 'PayPalController@test');
-
-
-Route::get('registro', function () {
-    return view('auth.registro');
-});
 
 
 Route::resource('phones', 'PhonesController');

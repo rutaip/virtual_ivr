@@ -187,7 +187,7 @@ class PayPalController extends Controller
 
 
 
-        Payment::create(['user_id' => $customer, 'payment_method' => 'paypal', 'amount' => $subtotal, 'status' => '1', 'transaction_id' => $elements->id, 'order_id' => $order]);
+        Payment::create(['user_id' => $customer, 'payment_method' => 'Paypal', 'amount' => $subtotal, 'status' => '1', 'transaction_id' => $elements->id, 'order_id' => $order]);
 
         return $PaymentId;
 

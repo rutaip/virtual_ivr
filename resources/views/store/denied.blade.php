@@ -22,12 +22,12 @@
 
                                 <i style="color: green" class="fa fa-thumbs-up fa-5x" aria-hidden="true"></i>
                                 <br>
-                                <h4>Pago exitoso</h4>
+                                <h4>Pago declinado</h4>
 
                             </div>
                             <div style="text-align: center" class="col-md-6">
 
-                                <h4>Su pago se ha realizado con éxito</h4>
+                                <h4>Su pago ha sido declinado</h4>
 
                                 Su nuevo Balance es de: $ {{number_format($balance,2)}}
                                 <br><br>

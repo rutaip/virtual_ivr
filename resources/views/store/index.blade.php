@@ -24,8 +24,8 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 {!! Form::label('amount', 'Seleccione un Plan') !!}
-                                                <p class="help-block">Elija el plan de acuerdo a sus necesidades</p>
-                                                {!! Form::select('amount', ['490' => 'Paquete $ 490 + iva', '750' => 'Paquete $ 750 + iva', '950' => 'Paquete $ 950 + iva'], null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Virtual IVR', 'autofocus']) !!}
+                                                <p class="help-block">Elije una recarga de acuerdo a tu plan IVR</p>
+                                                {!! Form::select('amount', ['490' => 'Recarga de $ 490 + iva', '750' => 'Recarga de $ 750 + iva', '950' => 'Recarga de $ 950 + iva'], null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Virtual IVR', 'autofocus']) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -58,19 +58,22 @@
 
                                 <h4>Cómo deseas realizar tu pago?</h4>
 
-                                Para tu seguridad y confianza utilizamos la comunicación del sitio está encriptada mediante certificados ssl (https).
-                                <br><br>
+                                Para tu seguridad y confianza la comunicación del sitio está encriptada mediante certificados ssl (https).
                                 <br>
+                                <br>
+                                <div style="text-align: center">
+                                    {{Html::image('images/https.png')}}
+                                </div>
 
-                                <ul class="treeview-menu">
-                                    <li>Seleccione el paquete</li>
-                                    <li>Seleccione su número, periodo y autorenovación</li>
-                                    <li>Ingrese sus números telefónicos a los cuales se transferirá</li>
-                                    <li>Añada el audio de su menú</li>
-                                    <li>Configure las opciones de su menú</li>
+                                <br>
+                                <ul class="treeview-menu fa-ul">
+                                    <li><i class="fa-li fa fa-check-square"></i>Para crear o activar su IVR deberá contar con saldo suficiente de acuerdo al ivr contratado</li>
+                                    <li><i class="fa-li fa fa-check-square"></i>Su IVR se renovará automaticamente de manera mensual</li>
+                                    <li><i class="fa-li fa fa-check-square"></i>Su crédito expira un año después de su última compra</li>
+                                    <li><i class="fa-li fa fa-check-square"></i>Nuestros métodos de pago son seguros</li>
+                                    <li><i class="fa-li fa fa-check-square"></i>Elegimos los mejores proveedores de pago para garantizar su seguridad</li>
+
                                 </ul>
-
-                                Seleccione el plan deseao del panel del lado izquierdo para comenzar.
 
                             </div>
                         </div>

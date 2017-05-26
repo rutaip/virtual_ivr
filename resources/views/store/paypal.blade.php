@@ -22,7 +22,7 @@
 
                                     <table class="table table-responsive">
                                         <tr>
-                                            <td>Plan Virtual IVR</td>
+                                            <td>Monto de recarga</td>
                                             <td>$ {{number_format($amount,2)}} MXN</td>
                                         </tr>
                                         <tr>
@@ -47,26 +47,16 @@
                                 </div>
 
                             </div>
-                            <div class="col-md-6">
+                            <div style="text-align: center" class="col-md-6">
 
                                 {{Html::script('https://www.paypalobjects.com/api/checkout.js')}}
 
-                                <h4>Cómo deseas realizar tu pago?</h4>
+                                <h4>Has seleccionado a Paypal como tu medio de pago</h4>
 
-                                Para tu seguridad y confianza utilizamos la comunicación del sitio está encriptada mediante certificados ssl (https).
-                                <br><br>
-                                <div id="paypal-button"></div>
+                                Para completar esta transacción selecciona el siguiente botón de Paypal
+                                <br><br><br><br>
+                                <div style="text-align: center;" id="paypal-button"></div>
                                 <br>
-
-                                <ul class="treeview-menu">
-                                    <li>Seleccione el paquete</li>
-                                    <li>Seleccione su número, periodo y autorenovación</li>
-                                    <li>Ingrese sus números telefónicos a los cuales se transferirá</li>
-                                    <li>Añada el audio de su menú</li>
-                                    <li>Configure las opciones de su menú</li>
-                                </ul>
-
-                                Seleccione el plan deseao del panel del lado izquierdo para comenzar.
 
                             </div>
                         </div>
@@ -93,7 +83,7 @@
 
             style: {
                 size: 'medium',
-                color: 'blue',
+                color: 'gold',
                 shape: 'rect',
                 label: 'checkout'
             },
@@ -133,7 +123,10 @@
                         window.location = '{{url('store/confirmation')}}' + '/' + data.paymentID;
                     })
                     .catch(function (err) {
-                        console.log('esta transaccion es erronea')
+                        console.log('esta transaccion es erronea' + err)
+
+                        window.location = '{{url('store/denied')}}' + '/' + '{{$order}}'
+
                     });
             }
 

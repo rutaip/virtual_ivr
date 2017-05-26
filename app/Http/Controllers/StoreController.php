@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderConfirmation;
+use App\Order;
 use App\Payment;
 use App\User;
 use App\UserBalance;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class StoreController extends Controller
 {
@@ -45,12 +48,11 @@ class StoreController extends Controller
         $user = Auth::user()->id;
         $order = 'INV-' . Carbon::now('America/Mexico_City')->format('Ymd') . '-' . uniqid();
 
+        Order::create(['order' => $order, 'amount' => $amount, 'months' => $months, 'user_id' => $user, 'status' => '1']);
 
-
-        if ($request->provider == 'paypal'){
+        if ($request->provider == 'paypal') {
             return view('store.paypal', compact('amount', 'months', 'subtotal', 'tax', 'total', 'user', 'order'));
-        }
-        else{
+        } else {
             return view('store.paypal', compact('amount', 'months', 'subtotal', 'tax', 'total', 'user', 'order'));
         }
     }
@@ -105,28 +107,61 @@ class StoreController extends Controller
         $payment = Payment::where('transaction_id', $id)
             ->where('status', '1')
             ->first();
+
+
+        if ($payment == '') {
+            return redirect('payments');
+        }
+
         $payment->status = '2';
         $payment->save();
 
+
+
+
         $user_balance = UserBalance::firstOrNew(['user_id' => $payment->user_id]);
 
-        if($user_balance->exists){
+        if ($user_balance->exists) {
             $user_balance->update([
-                    'balance' => $user_balance->balance + $payment->amount,
-                    'expiration' => Carbon::now('America/Mexico_City')->addYear()
+                'balance' => $user_balance->balance + $payment->amount,
+                'expiration' => Carbon::now('America/Mexico_City')->addYear()
             ]);
-        }
-        else{
+        } else {
             $user_balance->create([
                 'user_id' => $payment->user_id,
                 'balance' => $payment->amount,
                 'expiration' => Carbon::now('America/Mexico_City')->addYear()
             ]);
-                    }
+        }
+
+        Mail::to(Auth::user()->email)->send(new OrderConfirmation($payment));
+
 
         flash('Pago exitoso!', 'success');
 
 
         return view('store.confirmation');
+    }
+
+    public function denied($id)
+    {
+
+        $payment = Payment::where('order', $id)
+            ->where('status', '1')
+            ->first();
+
+
+        if ($payment == '') {
+            return redirect('payments');
+        }
+
+        $payment->status = '3';
+        $payment->save();
+
+
+        flash('Pago Declinado', 'error');
+
+
+        return view('store.denied');
     }
 }
