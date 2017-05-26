@@ -233,4 +233,18 @@ class StoreController extends Controller
 
         return $preference;
     }
+
+    public function delivery(){
+
+        $mp = new MP('7571760329122817', 'rf34phbyWJ4qTrZBDX3LEasra5IXR3Jp');
+
+        $mp->sandbox_mode(TRUE);
+
+        $payment_info = $mp->get_payment_info($_GET["id"]);
+
+        if ($payment_info["status"] == 200) {
+            print_r($payment_info["response"]);
+        }
+
+    }
 }
