@@ -22,15 +22,23 @@ Route::resource('dashboard', 'DashboardController');
 
 Route::get('store/confirmation/{id}', 'StoreController@confirmation');
 Route::get('store/denied/{id}', 'StoreController@denied');
+Route::get('store/pending/{id}', 'StoreController@pending');
 Route::resource('store', 'StoreController');
 
 
 Route::resource('payments', 'PaymentsController');
+Route::resource('orders', 'OrdersController');
+
 
 //Paypal
 Route::post('paypal/create-payment', 'PayPalController@CreatePayment');
 Route::post('paypal/execute-payment', 'PayPalController@ExecutePayment');
 Route::get('paypal/test', 'PayPalController@test');
+
+//Mercadopago
+Route::post('mercadopago/create-payment', 'MPagoController@CreatePayment');
+Route::post('mercadopago/execute-payment', 'MPagoController@ExecutePayment');
+Route::get('mercadopago/test', 'MPagoController@test');
 
 
 Route::resource('phones', 'PhonesController');

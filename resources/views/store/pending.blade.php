@@ -20,14 +20,14 @@
 
                                 <br><br>
 
-                                <i style="color: red" class="fa fa-thumbs-down fa-5x" aria-hidden="true"></i>
+                                <i style="color: orange" class="fa fa-thumbs-up fa-5x" aria-hidden="true"></i>
                                 <br>
-                                <h4>Pago declinado</h4>
+                                <h4>Pago pendiente por aprovación</h4>
 
                             </div>
                             <div style="text-align: center" class="col-md-6">
 
-                                <h4>Su pago ha sido declinado</h4>
+                                <h4>Su pago está en revisión</h4>
 
                                 Su nuevo Balance es de: $ {{number_format($balance,2)}}
                                 <br><br>

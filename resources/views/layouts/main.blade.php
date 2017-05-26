@@ -350,6 +350,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{ url('payments') }}"><i class="fa fa-circle-o"></i> Compras</a></li>
+                        <li><a href="{{ url('orders') }}"><i class="fa fa-circle-o"></i> Órdenes</a></li>
                         <li><a href="{{ url('phones') }}"><i class="fa fa-circle-o"></i> Extensiones</a></li>
                         <li><a href="{{ url('dids') }}"><i class="fa fa-circle-o"></i> DIDs</a></li>
                         <li><a href="{{ url('ivrs') }}"><i class="fa fa-circle-o"></i> Virtual IVR</a></li>

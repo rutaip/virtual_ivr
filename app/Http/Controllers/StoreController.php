@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use MP;
 
 class StoreController extends Controller
 {
@@ -53,7 +54,11 @@ class StoreController extends Controller
         if ($request->provider == 'paypal') {
             return view('store.paypal', compact('amount', 'months', 'subtotal', 'tax', 'total', 'user', 'order'));
         } else {
-            return view('store.paypal', compact('amount', 'months', 'subtotal', 'tax', 'total', 'user', 'order'));
+
+            $preference = $this->mercadopago($amount, $months, $request, $subtotal, $tax, $total, $user, $order);
+
+
+            return view('store.mercadopago', compact('amount', 'months', 'subtotal', 'tax', 'total', 'user', 'order', 'preference'));
         }
     }
 
@@ -104,6 +109,13 @@ class StoreController extends Controller
     public function confirmation($id)
     {
 
+        if (substr($id, 0,3) == 'MP-') //Si es confirmación de MercadoPago
+        {
+            $order = Order::where('order', substr($id, 3))->first();
+            Payment::firstOrCreate(['transaction_id' => $order->order],['user_id' => Auth::user()->id, 'payment_method' => 'Mercado Pago', 'amount' => $order->amount, 'status' => '1', 'transaction_id' => substr($id, 3), 'order_id' => substr($id, 3)]);
+            $id = substr($id, 3);
+        }
+
         $payment = Payment::where('transaction_id', $id)
             ->where('status', '1')
             ->first();
@@ -116,7 +128,9 @@ class StoreController extends Controller
         $payment->status = '2';
         $payment->save();
 
-
+        $order = Order::where('order', $payment->order_id)->first();
+        $order->status = '2';
+        $order->save();
 
 
         $user_balance = UserBalance::firstOrNew(['user_id' => $payment->user_id]);
@@ -146,7 +160,7 @@ class StoreController extends Controller
     public function denied($id)
     {
 
-        $payment = Payment::where('order', $id)
+        $payment = Order::where('order', $id)
             ->where('status', '1')
             ->first();
 
@@ -163,5 +177,60 @@ class StoreController extends Controller
 
 
         return view('store.denied');
+    }
+
+    public function pending($id)
+    {
+
+        $payment = Order::where('order', $id)
+            ->where('status', '1')
+            ->first();
+
+
+        if ($payment == '') {
+            return redirect('payments');
+        }
+
+        $payment->status = '4';
+        $payment->save();
+
+
+        flash('Pago Pendiente', 'warning');
+
+
+        return view('store.pending');
+    }
+
+    public function mercadopago($amount, $months, $request, $subtotal, $tax, $total, $user, $order)
+    {
+        $mp = new MP('7571760329122817', 'rf34phbyWJ4qTrZBDX3LEasra5IXR3Jp');
+
+        $preference_data = array(
+            "items" => array(
+                array(
+                    "title" => 'Fastcode Virtual IVR',
+                    "description" => 'Recarga de Servicio Virtual IVR ' . number_format($amount, 2) . ' + iva x ' . $months,
+                    "quantity" => 1,
+                    "currency_id" => "MXN", // Available currencies at: https://api.mercadopago.com/currencies
+                    "unit_price" => (int)$total
+                )
+            ),
+            "payer" => array(
+                "name" => Auth::user()->name,
+                "email" => Auth::user()->email,
+            ),
+            "back_urls" => array(
+                "success" => url('store/confirmation') . '/' . 'MP-' . $order,
+                "pending" => url('store/pending') . '/' . $order,
+                "failure" => url('store/denied') . '/' . $order,
+            ),
+            'auto_return' => 'all',
+            'notification_url' => url('store/confirmation') . '/' . 'MP-' . $order,
+            'external_reference' => $order
+        );
+
+        $preference = $mp->create_preference($preference_data);
+
+        return $preference;
     }
 }

@@ -22,7 +22,6 @@
                             <tr>
                                 <th>Método de pago</th>
                                 <th>Monto</th>
-                                <th>Estado</th>
                                 <th>Transacción</th>
                                 <th>Detalle</th>
                                 <th>Estado</th>
@@ -33,13 +32,14 @@
                                 <tr>
                                     <td>{{$payment->payment_method}}</td>
                                     <td>$ {{number_format($payment->amount, 2)}}</td>
-                                    <td>{{$payment->status}}</td>
                                     <td>{{$payment->transaction_id}}</td>
                                     <td>{{Html::link('#', 'Más información', ['data-toggle' => 'modal', 'data-target' => '#myModal'.$payment->id])}}</td>
                                     <td>@if($payment->status === '2')
                                             Aprobado
                                         @elseif($payment->status === '3')
                                             Rechazado
+                                        @elseif($payment->status === '4')
+                                            Pendiente
                                         @else
                                             Creado
                                         @endif

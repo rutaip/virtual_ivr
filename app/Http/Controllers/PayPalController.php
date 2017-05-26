@@ -135,7 +135,7 @@ class PayPalController extends Controller
                 'item_list' => [
                     'items' => array([
                         'name' => 'Virtual IVR',
-                        'description' => 'Pago de Servicio Virtual IVR Paquete ' . number_format($subtotal,2) . ' + iva x ' . $months,
+                        'description' => 'Recarga de Servicio Virtual IVR ' . number_format($subtotal,2) . ' + iva',
                         'quantity' => '1',
                         'price' => number_format($subtotal,2),
                         'tax' => number_format($tax,2),

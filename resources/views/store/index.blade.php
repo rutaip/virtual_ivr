@@ -42,12 +42,18 @@
                                             <div class="form-group">
                                                 {!! Form::label('provider', 'Tipo de pago') !!}
                                                 <p class="help-block">Elija su método de pago</p>
-                                                {!! Form::select('provider', ['paypal' => 'Paypal', 'payu' => 'PayU'], null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Medio de Pago']) !!}
+                                                {!! Form::select('provider', ['paypal' => 'Paypal', 'mercadopago' => 'Mercado Pago'], null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Medio de Pago']) !!}
                                             </div>
                                         </div>
                                     </div>
+                                    <br><br>
 
                                     <div class="row">
+                                        <div class="col-md-12" style="text-align: center">
+                                            <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppppcmcvdam.png">
+                                            <br><br>
+                                            <img src="https://imgmp.mlstatic.com/org-img/banners/mx/medios/MLM_468X60_new.jpg" width="468" height="60"/>
+                                        </div>
 
                                     </div>
                                     <!-- /.box-body -->
@@ -72,9 +78,7 @@
                                     <li><i class="fa-li fa fa-check-square"></i>Su crédito expira un año después de su última compra</li>
                                     <li><i class="fa-li fa fa-check-square"></i>Nuestros métodos de pago son seguros</li>
                                     <li><i class="fa-li fa fa-check-square"></i>Elegimos los mejores proveedores de pago para garantizar su seguridad</li>
-
                                 </ul>
-
                             </div>
                         </div>
                     </div>

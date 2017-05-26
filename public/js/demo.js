@@ -213,7 +213,7 @@
   setup();
 
   /**
-   * Toggles layout classes
+   * Toggles layout mercadopago
    *
    * @param String cls the layout class to toggle
    * @returns void
