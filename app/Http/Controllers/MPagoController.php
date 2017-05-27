@@ -12,7 +12,14 @@ use App\Mail\OrderDelivery;
 class MPagoController extends Controller
 {
 
+    public function create(){
+
+        return view('store.create');
+    }
+
     public function store(Request $request){
+
+        //return $request->all();
 
         $mp = new MP(env('MERCADOPAGO_USER'), env('MERCADOPAGO_PASS'));
 
