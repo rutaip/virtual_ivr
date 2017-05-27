@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use MP;
+use Illuminate\Support\Facades\Input;
 
 class StoreController extends Controller
 {
@@ -238,16 +239,18 @@ class StoreController extends Controller
 
     public function delivery(){
 
+        $id = Input::get('id');
+
         $mp = new MP('7571760329122817', 'rf34phbyWJ4qTrZBDX3LEasra5IXR3Jp');
 
         $mp->sandbox_mode(TRUE);
 
-        if (!isset($_GET["id"]) || !ctype_digit($_GET["id"])) {
+        if (!isset($id) || !ctype_digit($id)) {
             http_response_code(200);
             return;
         }
 
-        $payment_info = $mp->get_payment_info($_GET["id"]);
+        $payment_info = $mp->get_payment_info($id);
 
         if ($payment_info["status"] == 200) {
             print_r($payment_info["response"]);
