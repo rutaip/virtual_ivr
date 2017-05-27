@@ -59,6 +59,8 @@ class StoreController extends Controller
 
             $preference = $this->mercadopago($amount, $months, $request, $subtotal, $tax, $total, $user, $order);
 
+            return $preference;
+
 
             Payment::firstOrCreate(['transaction_id' => $preference['response']['id']],['user_id' => Auth::user()->id, 'payment_method' => 'Mercado Pago', 'amount' => $amount, 'status' => '1', 'transaction_id' => $preference["response"]["id"], 'order_id' => $order]);
 
@@ -240,6 +242,8 @@ class StoreController extends Controller
     public function delivery(){
 
         $id = Input::get('id');
+
+        return 'ok';
 
 
         $mp = new MP('7571760329122817', 'rf34phbyWJ4qTrZBDX3LEasra5IXR3Jp');
