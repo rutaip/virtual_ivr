@@ -243,7 +243,9 @@ class StoreController extends Controller
 
         $mp = new MP('7571760329122817', 'rf34phbyWJ4qTrZBDX3LEasra5IXR3Jp');
 
-        //$mp->sandbox_mode(TRUE);
+        $mp->sandbox_mode(TRUE);
+
+        echo 'prueba de texto';
 
         if (!isset($id) || !ctype_digit($id)) {
             http_response_code(400);
