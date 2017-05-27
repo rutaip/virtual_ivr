@@ -207,7 +207,7 @@ class StoreController extends Controller
     {
         $mp = new MP('7571760329122817', 'rf34phbyWJ4qTrZBDX3LEasra5IXR3Jp');
 
-        $mp->sandbox_mode(TRUE);
+        $mp->sandbox_mode(FALSE);
 
         $preference_data = array(
             "items" => array(
@@ -240,11 +240,12 @@ class StoreController extends Controller
 
     public function delivery(){
 
-        $id = Input::get('data.id');
+        $id = $_GET['id'];
+
 
         $mp = new MP('7571760329122817', 'rf34phbyWJ4qTrZBDX3LEasra5IXR3Jp');
 
-        $mp->sandbox_mode(TRUE);
+        $mp->sandbox_mode(FALSE);
 
         $payment_info = $mp->get_payment_info($id);
 
