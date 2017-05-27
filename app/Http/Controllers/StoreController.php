@@ -242,13 +242,14 @@ class StoreController extends Controller
 
         $id = $_GET['id'];
 
-        response()->setStatusCode(201, 'The resource is created successfully!');
 
         $mp = new MP('7571760329122817', 'rf34phbyWJ4qTrZBDX3LEasra5IXR3Jp');
 
         $mp->sandbox_mode(FALSE);
 
         $payment_info = $mp->get_payment_info($id);
+
+        response('The resource is created successfully!', 200);
 
 
 
