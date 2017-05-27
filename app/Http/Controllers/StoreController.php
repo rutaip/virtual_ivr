@@ -205,9 +205,7 @@ class StoreController extends Controller
 
     public function mercadopago($amount, $months, $request, $subtotal, $tax, $total, $user, $order)
     {
-        $mp = new MP('8902947559363464', 'GQN3vywCcHVygk7SFrTnMKmhnjhjsvz7');
-
-        $mp->sandbox_mode(FALSE);
+        $mp = new MP(env('MERCADOPAGO_USER'), env('MERCADOPAGO_PASS'));
 
         $preference_data = array(
             "items" => array(
@@ -240,10 +238,7 @@ class StoreController extends Controller
 
     public function delivery(){
 
-        $id = $_GET['id'];
-
-
-        $mp = new MP("8902947559363464", "GQN3vywCcHVygk7SFrTnMKmhnjhjsvz7");
+        $mp = new MP(env('MERCADOPAGO_USER'), env('MERCADOPAGO_PASS'));
 
         if (!isset($_GET["id"], $_GET["topic"]) || !ctype_digit($_GET["id"])) {
             http_response_code(400);
