@@ -56,7 +56,7 @@
                                 Para completar esta transacción selecciona el siguiente botón de MercadoPago
                                 <br><br><br><br>
                                 <div style="text-align: center;"></div>
-                                <a href="{{$preference["response"]["init_point"]}}" name="MP-Checkout" class="color-L-Sq-Tr-MxAll" mp-mode="modal">Pagar</a>
+                                <a href="{{$preference["response"]["init_point"]}}" name="MP-Checkout" class="lightblue-L-Rn-Tr-MxAll">Pagar</a>
                                 <br>
 
                             </div>
