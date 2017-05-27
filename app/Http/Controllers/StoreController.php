@@ -242,6 +242,11 @@ class StoreController extends Controller
 
         $mp->sandbox_mode(TRUE);
 
+        if (!isset($_GET["id"]) || !ctype_digit($_GET["id"])) {
+            http_response_code(200);
+            return;
+        }
+
         $payment_info = $mp->get_payment_info($_GET["id"]);
 
         if ($payment_info["status"] == 200) {
