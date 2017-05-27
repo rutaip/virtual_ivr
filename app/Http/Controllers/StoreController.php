@@ -249,10 +249,10 @@ class StoreController extends Controller
             http_response_code(400);
             return;
         }
+        Mail::to(Auth::user()->email)->send(new OrderDelivery());
 
         $payment_info = $mp->get_payment_info($id);
 
-        Mail::to(Auth::user()->email)->send(new OrderDelivery());
 
         if ($payment_info["status"] == 200) {
             Mail::to(Auth::user()->email)->send(new OrderDelivery());
