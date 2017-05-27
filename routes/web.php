@@ -23,8 +23,8 @@ Route::resource('dashboard', 'DashboardController');
 Route::get('store/confirmation/{id}', 'StoreController@confirmation');
 Route::get('store/denied/{id}', 'StoreController@denied');
 Route::get('store/pending/{id}', 'StoreController@pending');
-Route::resource('mercado', 'StoreController@delivery');
 Route::resource('store', 'StoreController');
+Route::resource('mercado', 'MPagoController');
 
 
 Route::resource('payments', 'PaymentsController');

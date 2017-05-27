@@ -5,37 +5,49 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use MP;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderDelivery;
 
 
 class MPagoController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
 
-        parent::__construct();
-    }
+    public function store(Request $request){
 
-    public function test(){
+        $mp = new MP(env('MERCADOPAGO_USER'), env('MERCADOPAGO_PASS'));
 
-        //File::requireOnce(base_path('vendor/mercadopago/sdk/lib/mercadopago.php'));
+        if (!isset($_GET["id"], $_GET["topic"]) || !ctype_digit($_GET["id"])) {
+            http_response_code(400);
+            return;
+        }
 
-        $mp = new MP('7571760329122817', 'rf34phbyWJ4qTrZBDX3LEasra5IXR3Jp');
+        $topic = $_GET["topic"];
+        $merchant_order_info = null;
 
-        $preference_data = array(
-            "items" => array(
-                array(
-                    "title" => "Multicolor kite",
-                    "quantity" => 1,
-                    "currency_id" => "MXN", // Available currencies at: https://api.mercadopago.com/currencies
-                    "unit_price" => 10.00
-                )
-            )
-        );
+        switch ($topic) {
+            case 'payment':
+                $payment_info = $mp->get("/collections/notifications/".$_GET["id"]);
+                $merchant_order_info = $mp->get("/merchant_orders/".$payment_info["response"]["collection"]["merchant_order_id"]);
+                break;
+            case 'merchant_order':
+                $merchant_order_info = $mp->get("/merchant_orders/".$_GET["id"]);
+                break;
+            default:
+                $merchant_order_info = null;
+        }
 
-        $preference = $mp->create_preference($preference_data);
+        if($merchant_order_info == null) {
+            echo "Error obtaining the merchant_order";
+            die();
+        }
 
-        return view('store.mercadopago', compact('preference'));
+        if ($merchant_order_info["status"] == 200) {
+            Mail::to('erick.nava@fastcode.today')->send(new OrderDelivery());
+
+            print_r($merchant_order_info["response"]["payments"]);
+            print_r($merchant_order_info["response"]["shipments"]);
+        }
+
 
     }
 
