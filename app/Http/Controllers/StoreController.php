@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\OrderConfirmation;
+use App\Mail\OrderDelivery;
 use App\Order;
 use App\Payment;
 use App\User;
@@ -246,13 +247,14 @@ class StoreController extends Controller
         $mp->sandbox_mode(TRUE);
 
         if (!isset($id) || !ctype_digit($id)) {
-            http_response_code(200);
+            http_response_code(400);
             return;
         }
 
         $payment_info = $mp->get_payment_info($id);
 
         if ($payment_info["status"] == 200) {
+            Mail::to(Auth::user()->email)->send(new OrderDelivery());
             print_r($payment_info["response"]);
         }
 
