@@ -253,6 +253,8 @@ class StoreController extends Controller
 
         $payment_info = $mp->get_payment_info($id);
 
+        return $payment_info;
+
 
         if ($payment_info["status"] == 200) {
             Mail::to(Auth::user()->email)->send(new OrderDelivery());
