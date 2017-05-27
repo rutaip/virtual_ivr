@@ -59,9 +59,6 @@ class StoreController extends Controller
 
             $preference = $this->mercadopago($amount, $months, $request, $subtotal, $tax, $total, $user, $order);
 
-            return $preference;
-
-
             Payment::firstOrCreate(['transaction_id' => $preference['response']['id']],['user_id' => Auth::user()->id, 'payment_method' => 'Mercado Pago', 'amount' => $amount, 'status' => '1', 'transaction_id' => $preference["response"]["id"], 'order_id' => $order]);
 
             return view('store.mercadopago', compact('amount', 'months', 'subtotal', 'tax', 'total', 'user', 'order', 'preference'));
