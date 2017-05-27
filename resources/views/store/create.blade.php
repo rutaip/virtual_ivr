@@ -8,7 +8,7 @@
         <div class="row">
             <!-- /.col -->
             <div class="col-md-12">
-                {!! Form::open(array('url' => 'mercado?topic=merchant_order&id=505947454', 'role' => 'form' )) !!}
+                {!! Form::open(array('url' => 'mercado?topic=payment&id=2756346633', 'role' => 'form' )) !!}
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Realicemos tu pago</h3>
