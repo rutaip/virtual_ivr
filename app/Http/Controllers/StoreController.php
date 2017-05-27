@@ -243,9 +243,6 @@ class StoreController extends Controller
 
         $id = Input::get('id');
 
-        return 'ok';
-
-
         $mp = new MP('7571760329122817', 'rf34phbyWJ4qTrZBDX3LEasra5IXR3Jp');
 
         $mp->sandbox_mode(TRUE);
