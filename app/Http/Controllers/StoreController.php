@@ -58,6 +58,8 @@ class StoreController extends Controller
             $preference = $this->mercadopago($amount, $months, $request, $subtotal, $tax, $total, $user, $order);
 
 
+            Payment::firstOrCreate(['transaction_id' => $preference['response']['id']],['user_id' => Auth::user()->id, 'payment_method' => 'Mercado Pago', 'amount' => $amount, 'status' => '1', 'transaction_id' => $preference["response"]["id"], 'order_id' => $order]);
+
             return view('store.mercadopago', compact('amount', 'months', 'subtotal', 'tax', 'total', 'user', 'order', 'preference'));
         }
     }
@@ -111,9 +113,9 @@ class StoreController extends Controller
 
         if (substr($id, 0,3) == 'MP-') //Si es confirmación de MercadoPago
         {
-            $order = Order::where('order', substr($id, 3))->first();
-            Payment::firstOrCreate(['transaction_id' => $order->order],['user_id' => Auth::user()->id, 'payment_method' => 'Mercado Pago', 'amount' => $order->amount, 'status' => '1', 'transaction_id' => substr($id, 3), 'order_id' => substr($id, 3)]);
-            $id = substr($id, 3);
+            $payment = Payment::where('order_id', substr($id,3))
+                ->first();
+            $id = $payment->transaction_id;
         }
 
         $payment = Payment::where('transaction_id', $id)
@@ -225,7 +227,7 @@ class StoreController extends Controller
                 "failure" => url('store/denied') . '/' . $order,
             ),
             'auto_return' => 'all',
-            'notification_url' => url('store/confirmation') . '/' . 'MP-' . $order,
+            'notification_url' => url('store/delivery'),
             'external_reference' => $order
         );
 
@@ -240,11 +242,7 @@ class StoreController extends Controller
 
         $mp->sandbox_mode(TRUE);
 
-        $payment_info = $mp->get_payment_info($_GET["id"]);
-
-        if ($payment_info["status"] == 200) {
-            print_r($payment_info["response"]);
-        }
+        return 'ok';
 
     }
 }
