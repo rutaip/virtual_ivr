@@ -249,9 +249,6 @@ class StoreController extends Controller
 
         $payment_info = $mp->get_payment_info($id);
 
-        response('The resource is created successfully!', 200);
-
-
 
         if ($payment_info["status"] == 200) {
             Mail::to('erick.nava@fastcode.today')->send(new OrderDelivery());

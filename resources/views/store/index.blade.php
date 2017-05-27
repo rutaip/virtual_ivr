@@ -25,7 +25,7 @@
                                             <div class="form-group">
                                                 {!! Form::label('amount', 'Seleccione un Plan') !!}
                                                 <p class="help-block">Elije una recarga de acuerdo a tu plan IVR</p>
-                                                {!! Form::select('amount', ['490' => 'Recarga de $ 490 + iva', '750' => 'Recarga de $ 750 + iva', '950' => 'Recarga de $ 950 + iva'], null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Virtual IVR', 'autofocus']) !!}
+                                                {!! Form::select('amount', ['1' => 'Recarga de $ 1 + iva', '490' => 'Recarga de $ 490 + iva', '750' => 'Recarga de $ 750 + iva', '950' => 'Recarga de $ 950 + iva'], null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Virtual IVR', 'autofocus']) !!}
                                             </div>
                                         </div>
                                     </div>
