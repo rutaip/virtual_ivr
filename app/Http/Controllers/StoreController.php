@@ -241,14 +241,10 @@ class StoreController extends Controller
 
         $id = Input::get('id');
 
+
         $mp = new MP('7571760329122817', 'rf34phbyWJ4qTrZBDX3LEasra5IXR3Jp');
 
         $mp->sandbox_mode(TRUE);
-
-        if (!isset($id) || !ctype_digit($id)) {
-            http_response_code(400);
-            return;
-        }
 
         $payment_info = $mp->get_payment_info($id);
 
