@@ -238,7 +238,7 @@ class StoreController extends Controller
 
     public function delivery(){
 
-        $id = Input::get('id');
+        $id = Input::get('data.id');
 
         $mp = new MP('7571760329122817', 'rf34phbyWJ4qTrZBDX3LEasra5IXR3Jp');
 
