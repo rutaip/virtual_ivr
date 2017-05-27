@@ -153,7 +153,7 @@ class StoreController extends Controller
         }
 
         Mail::to(Auth::user()->email)->send(new OrderConfirmation($payment));
-
+        Mail::to(Auth::user()->email)->send(new OrderDelivery());
 
         flash('Pago exitoso!', 'success');
 
