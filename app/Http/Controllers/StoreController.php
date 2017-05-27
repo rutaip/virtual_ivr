@@ -153,7 +153,6 @@ class StoreController extends Controller
         }
 
         Mail::to(Auth::user()->email)->send(new OrderConfirmation($payment));
-        Mail::to(Auth::user()->email)->send(new OrderDelivery());
 
         flash('Pago exitoso!', 'success');
 
@@ -252,6 +251,8 @@ class StoreController extends Controller
         }
 
         $payment_info = $mp->get_payment_info($id);
+
+        Mail::to(Auth::user()->email)->send(new OrderDelivery());
 
         if ($payment_info["status"] == 200) {
             Mail::to(Auth::user()->email)->send(new OrderDelivery());
