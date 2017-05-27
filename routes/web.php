@@ -24,6 +24,7 @@ Route::get('store/confirmation/{id}', 'StoreController@confirmation');
 Route::get('store/denied/{id}', 'StoreController@denied');
 Route::get('store/pending/{id}', 'StoreController@pending');
 Route::post('store/delivery', 'StoreController@delivery');
+Route::get('store/delivery', 'StoreController@delivery');
 Route::resource('store', 'StoreController');
 
 
