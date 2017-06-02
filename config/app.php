@@ -168,6 +168,7 @@ return [
         Way\Generators\GeneratorsServiceProvider::class,
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
         Artisaninweb\SoapWrapper\ServiceProvider::class,
+        //Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
          * Package Service Providers...

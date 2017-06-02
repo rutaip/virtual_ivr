@@ -1,7 +1,37 @@
-@extends('layouts.main')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-@section('content')
+    <title>Fastcode</title>
 
+    <!-- Bootstrap 3.3.6 -->
+{!! Html::style('css/bootstrap.min.css') !!}
+{!! Html::style('css/AdminLTE.min.css') !!}
+
+<!-- Font Awesome -->
+{!! Html::style('css/font-awesome.min.css') !!}
+
+<!-- Custom styles for this template  -->
+{!! Html::style('css/navbar.css') !!}
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+{!! Html::style('css/ie10-viewport-bug-workaround.css') !!}
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
     <!-- Main content -->
     <section class="content">
 
@@ -59,7 +89,7 @@
                                 <br>
                                 <br>
                                 <div style="text-align: center">
-                                    {{Html::image('images/https.png')}}
+                                    {{Html::image('images/https.png')}} {{$balance}}
                                 </div>
 
                                 <br>
@@ -79,7 +109,7 @@
                     </div>
                     <!-- /.box-footer -->
                 </div>
-                {!! Form::close() !!}
+                </form>
             </div>
         </div>
         <!-- /.box -->
@@ -88,4 +118,5 @@
     </section>
     <!-- /.content -->
 
-@endsection
+</body>
+</html>

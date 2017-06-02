@@ -12,10 +12,15 @@ use App\Mail\OrderDelivery;
 class MPagoController extends Controller
 {
 
-    public function create(){
+    public function index(){
 
+    }
+
+    public function create(){
         return view('store.create');
     }
+
+
 
     public function store(Request $request){
 
