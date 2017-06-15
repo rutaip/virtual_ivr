@@ -78,6 +78,17 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="terminos" {{ old('terminos') ? 'checked' : '' }} required>
+                                        Al registrarme acepto {!! Html::link('', 'Terminos y condiciones', ['target' => '_blank']) !!} dispuestos para el sitio, así mismo, acepto el {!! Html::link('http://www.fastcode.today/aviso-de-privacidad', 'Aviso de Privacidad', ['target' => '_blank']) !!}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>

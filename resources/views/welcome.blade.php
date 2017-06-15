@@ -158,6 +158,10 @@
                 {{Html::link('#carousel-example-generic', '¿Cuáles son los paquetes?', ['data-slide-to' => '2', 'class' => 'btn', 'style' => 'font-size:20px;'])}} |
                 {{Html::link('#carousel-example-generic', '¿Cómo contrato?', ['data-slide-to' => '3', 'class' => 'btn', 'style' => 'font-size:20px;'])}}
                 </div>
+                <div class="row" style="text-align: center">
+                    <br>
+                    {!! Html::link('http://www.fastcode.today/aviso-de-privacidad', 'Aviso de Privacidad', ['target' => '_blank']) !!}
+                </div>
             </div>
         </div>
     </div>
