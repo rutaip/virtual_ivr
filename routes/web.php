@@ -21,6 +21,8 @@ Route::get('/home', 'DashboardController@index');
 Route::resource('dashboard', 'DashboardController');
 Route::get('verifyemail/{token}', 'Auth\RegisterController@verify');
 
+Route::resource('extensions', 'ExtensionsController');
+
 
 Route::get('store/confirmation/{id}', 'StoreController@confirmation');
 Route::get('store/denied/{id}', 'StoreController@denied');
