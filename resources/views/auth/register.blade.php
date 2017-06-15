@@ -81,7 +81,7 @@
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="terminos" {{ old('terminos') ? 'checked' : '' }} required>
-                                        Al registrarme acepto {!! Html::link('', 'Terminos y condiciones', ['target' => '_blank']) !!} dispuestos para el sitio, así mismo, acepto el {!! Html::link('http://www.fastcode.today/aviso-de-privacidad', 'Aviso de Privacidad', ['target' => '_blank']) !!}
+                                        Al registrarme acepto {!! Html::link('http://www.fastcode.today/terminos-y-condiciones/', 'Terminos y condiciones', ['target' => '_blank']) !!} dispuestos para el sitio, así mismo, acepto el {!! Html::link('http://www.fastcode.today/aviso-de-privacidad', 'Aviso de Privacidad', ['target' => '_blank']) !!}
                                     </label>
                                 </div>
                             </div>
