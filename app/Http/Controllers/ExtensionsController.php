@@ -18,7 +18,7 @@ class ExtensionsController extends Controller
     {
 
         $did = '525585261041';
-        $context = 'test';
+        $context = 'from_didww';
         $priority = 'n';
 
         $dialplan = new Extension();
