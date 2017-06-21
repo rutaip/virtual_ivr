@@ -42,7 +42,7 @@
                                             <div class="form-group">
                                                 {!! Form::label('provider', 'Tipo de pago') !!}
                                                 <p class="help-block">Elija su método de pago</p>
-                                                {!! Form::select('provider', ['paypal' => 'Paypal', 'mercadopago' => 'Mercado Pago'], null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Medio de Pago']) !!}
+                                                {!! Form::select('provider', ['paypal' => 'Paypal', 'payu' => 'PayU', 'mercadopago' => 'Mercado Pago'], null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Medio de Pago']) !!}
                                             </div>
                                         </div>
                                     </div>

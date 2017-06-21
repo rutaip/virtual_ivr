@@ -45,6 +45,9 @@ Route::post('mercadopago/create-payment', 'MPagoController@CreatePayment');
 Route::post('mercadopago/execute-payment', 'MPagoController@ExecutePayment');
 Route::get('mercadopago/test', 'MPagoController@test');
 
+//PayU
+Route::get('payu/response', 'PayUController@response');
+
 
 Route::resource('phones', 'PhonesController');
 Route::resource('permissions', 'PermissionsController');

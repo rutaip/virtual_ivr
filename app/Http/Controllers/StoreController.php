@@ -49,13 +49,29 @@ class StoreController extends Controller
         $tax = $subtotal * .16;
         $total = $subtotal + $tax;
         $user = Auth::user()->id;
+        $user_email = Auth::user()->email;
         $order = 'INV-' . Carbon::now('America/Mexico_City')->format('Ymd') . '-' . uniqid();
 
         Order::create(['order' => $order, 'amount' => $amount, 'months' => $months, 'user_id' => $user, 'status' => '1']);
 
         if ($request->provider == 'paypal') {
             return view('store.paypal', compact('amount', 'months', 'subtotal', 'tax', 'total', 'user', 'order'));
-        } else {
+        }
+        elseif ($request->provider == 'payu') {
+
+            $merchantid = env('PAYU_MERCHANTID');
+            $accountid = env('PAYU_ACCOUNTID');
+            $apikey = env('PAYU_APIKEY');
+            $currency = 'MXN';
+            //signature = “ApiKey~merchantId~referenceCode~amount~currency”
+            $signature = md5($apikey.'~'.$merchantid.'~'.$order.'~'.$total.'~'.$currency);
+
+            //return $signature . ' ' .$order . ' ' . $total;
+
+            return view('store.payu', compact('amount', 'months', 'subtotal', 'tax', 'total', 'user_email',
+                'order', 'merchantid', 'accountid', 'apikey', 'currency', 'signature'));
+        }
+        else {
 
             $preference = $this->mercadopago($amount, $months, $request, $subtotal, $tax, $total, $user, $order);
 
