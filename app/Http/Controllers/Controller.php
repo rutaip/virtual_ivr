@@ -25,7 +25,9 @@ class Controller extends BaseController
             $view->with('signedIn', Auth::check());
             $view->with('user_logged', Auth::user());
 
-            $register_user = Auth::user()->id;
+            if ($view->getName() != 'emails.orders.confirmation') {
+                $register_user = Auth::user()->id;
+            }
 
             $balance = UserBalance::where('user_id', $register_user)->first();
 
@@ -38,11 +40,6 @@ class Controller extends BaseController
 
             $view->with('balance', $credito);
         });
-
-        view()->composer('emails.orders.confirmation', function ($view) {
-            $register_user = null;
-        });
-
 
     }
 }
