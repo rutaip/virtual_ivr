@@ -39,7 +39,7 @@ class Controller extends BaseController
             $view->with('balance', $credito);
         });
 
-        view()->composer('emails', function ($view) {
+        view()->composer('emails.orders.confirmation', function ($view) {
             $register_user = null;
         });
 
