@@ -148,7 +148,7 @@ class PayUController extends Controller
                 'order_id' => $request->reference_sale
             ]);
 
-
+/*
 
         if($request->state_pol == '4'){
             $payment = Payment::where('transaction_id', $request->transaction_id)
@@ -214,7 +214,7 @@ class PayUController extends Controller
             $payment->save();
 
         }
-
+*/
 
 
 
