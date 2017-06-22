@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Log;
 use MP;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\OrderDelivery;
 use App\Payment;
 use App\UserBalance;
 use App\Order;
@@ -76,11 +73,6 @@ class MPagoController extends Controller
 
         if ($merchant_order_info["status"]== 200) {
 
-            //Mail::to('erick.nava@fastcode.today')->send(new OrderDelivery());
-
-            Log::info($merchant_order_info["response"]["payments"]);
-            Log::info($merchant_order_info["response"]["shipments"]);
-            Log::info($merchant_order_info);
 
             $order = Order::where('order', $merchant_order_info["response"]["external_reference"])
                 ->first();
