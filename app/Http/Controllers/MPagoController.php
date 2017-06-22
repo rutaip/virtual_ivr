@@ -13,6 +13,13 @@ use App\Mail\OrderDelivery;
 class MPagoController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => 'confirmation']);
+
+        parent::__construct();
+    }
+
     public function index(){
 
     }
@@ -22,6 +29,9 @@ class MPagoController extends Controller
     }
 
     public function success(){
+
+        flash('Pago exitoso!', 'success');
+
         return view('store.confirmation');
     }
 
