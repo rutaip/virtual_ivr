@@ -134,6 +134,8 @@ class PayUController extends Controller
 
         Payment::firstOrCreate(['transaction_id' => $request->transaction_id],['user_id' => Auth::user()->id, 'payment_method' => 'PayU', 'amount' => $request->value, 'status' => '1', 'transaction_id' => $request->transaction_id, 'order_id' => $request->reference_sale]);
 
+        /*
+
         if($request->state_pol == '4'){
             $payment = Payment::where('transaction_id', $request->transaction_id)
                 ->where('status', '1')
@@ -199,7 +201,7 @@ class PayUController extends Controller
 
         }
 
-
+*/
 
 
     }
