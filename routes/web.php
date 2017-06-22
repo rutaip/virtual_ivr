@@ -28,7 +28,7 @@ Route::get('store/confirmation/{id}', 'StoreController@confirmation');
 Route::get('store/denied/{id}', 'StoreController@denied');
 Route::get('store/pending/{id}', 'StoreController@pending');
 Route::resource('store', 'StoreController');
-Route::resource('mercado', 'MPagoController');
+Route::get('mercado/confirmation', 'MPagoController@confirmation');
 
 
 Route::resource('payments', 'PaymentsController');

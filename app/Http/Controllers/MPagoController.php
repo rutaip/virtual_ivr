@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use MP;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderDelivery;
@@ -22,9 +23,11 @@ class MPagoController extends Controller
 
 
 
-    public function store(Request $request){
+    public function confirmation(Request $request){
 
-        //return $request->all();
+        Log::info($request->all());
+
+        /*
 
         $mp = new MP(env('MERCADOPAGO_USER'), env('MERCADOPAGO_PASS'));
 
@@ -60,7 +63,7 @@ class MPagoController extends Controller
             print_r($merchant_order_info["response"]["shipments"]);
         }
 
-
+*/
     }
 
 

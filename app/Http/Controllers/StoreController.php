@@ -244,7 +244,7 @@ class StoreController extends Controller
                 "failure" => url('store/denied') . '/' . $order,
             ),
             'auto_return' => 'all',
-            'notification_url' => url('mercado'),
+            'notification_url' => url('mercado/confirmation'),
             'external_reference' => $order
         );
 
