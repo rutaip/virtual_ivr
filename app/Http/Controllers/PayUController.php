@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Payment;
 use Illuminate\Support\Facades\Log;
@@ -134,12 +135,12 @@ class PayUController extends Controller
 
         $order = Order::where('order', $request->reference_sale)
             ->first();
+        $user = User::where('id', $order->user_id)->first();
 
-        Log::info($order->user_id);
 
 
         Payment::firstOrCreate(['transaction_id' => $request->transaction_id],
-            ['user_id' => $order->user_id,
+            ['user_id' => $user->id,
                 'payment_method' => 'PayU',
                 'amount' => $request->value,
                 'status' => '1',
@@ -182,7 +183,7 @@ class PayUController extends Controller
                 ]);
             }
 
-            Mail::to(Auth::user()->email)->send(new OrderConfirmation($payment));
+            Mail::to($user->email)->send(new OrderConfirmation($payment));
 
         }
         elseif ($request->state_pol == '6'){
