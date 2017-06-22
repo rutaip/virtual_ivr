@@ -172,7 +172,7 @@ class PayUController extends Controller
 
     public function confirmation(Request $request){
 
-        Log::info($request->all());
+        Log::info($request->state_pol);
 
 
 
