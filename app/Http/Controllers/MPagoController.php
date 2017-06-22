@@ -25,6 +25,7 @@ class MPagoController extends Controller
         parent::__construct();
     }
 
+
     public function index()
     {
 
@@ -91,84 +92,6 @@ class MPagoController extends Controller
             $order = Order::where('order', $merchant_order_info["response"]["shipments"])
                 ->first();
             $user_owner = User::where('id', $order->user_id)->first();
-
-
-
-            if ($merchant_order_info['response']['payments']['status'] == 'approved') {
-
-
-
-                Payment::firstOrCreate(['transaction_id' => $request->transaction_id],
-                    [
-                        'user_id' => $user_owner->id,
-                        'payment_method' => 'Mercado Pago',
-                        'amount' => $merchant_order_info["response"]['paid_amount'],
-                        'status' => '2',
-                        'transaction_id' => $request->transaction_id,
-                        'order_id' => $order]);
-
-
-                $payment = Payment::where('transaction_id', $request->transaction_id)
-                    ->where('status', '1')
-                    ->first();
-
-
-                if ($payment == '') {
-                    return abort('500');
-                }
-
-                $payment->status = '2';
-                $payment->save();
-
-                $order = Order::where('order', $payment->order_id)->first();
-                $order->status = '2';
-                $order->save();
-
-
-                $user_balance = UserBalance::firstOrNew(['user_id' => $payment->user_id]);
-
-                if ($user_balance->exists) {
-                    $user_balance->update([
-                        'balance' => $user_balance->balance + $payment->amount,
-                        'expiration' => Carbon::now('America/Mexico_City')->addYear()
-                    ]);
-                } else {
-                    $user_balance->create([
-                        'user_id' => $payment->user_id,
-                        'balance' => $payment->amount,
-                        'expiration' => Carbon::now('America/Mexico_City')->addYear()
-                    ]);
-                }
-
-                Mail::to($user_owner->email)->send(new OrderConfirmation($payment));
-
-            } elseif ($request->state_pol == '6') {
-                $payment = Order::where('order', $request->reference_sale)
-                    ->where('status', '1')
-                    ->first();
-
-
-                if ($payment == '') {
-                    return redirect('payments');
-                }
-
-                $payment->status = '3';
-                $payment->save();
-
-            } else {
-                $payment = Order::where('order', $request->reference_sale)
-                    ->where('status', '1')
-                    ->first();
-
-
-                if ($payment == '') {
-                    return redirect('payments');
-                }
-
-                $payment->status = '5';
-                $payment->save();
-
-            }
 
 
         }
