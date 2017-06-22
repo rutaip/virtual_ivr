@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Payment;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Order;
@@ -170,6 +171,8 @@ class PayUController extends Controller
     }
 
     public function confirmation(Request $request){
+
+        Log::info($request->all());
 
 
 
