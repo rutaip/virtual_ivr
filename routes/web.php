@@ -47,6 +47,8 @@ Route::get('mercadopago/test', 'MPagoController@test');
 
 //PayU
 Route::get('payu/response', 'PayUController@response');
+Route::post('payu/confirmation', 'PayUController@confirmation');
+
 
 
 Route::resource('phones', 'PhonesController');

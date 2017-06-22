@@ -50,4 +50,10 @@ class PayUController extends Controller
 
 
     }
+
+    public function confirmation(Request $request){
+
+
+
+    }
 }

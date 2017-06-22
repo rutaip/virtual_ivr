@@ -55,7 +55,7 @@
 
                                 Para completar esta transacción selecciona el siguiente botón de PayU
 
-                                {!! Form::open(array('url' => 'https://gateway.payulatam.com/ppp-web-gateway/', 'role' => 'form')) !!}
+                                {!! Form::open(array('url' => 'https://sandbox.gateway.payulatam.com/ppp-web-gateway/', 'role' => 'form')) !!}
 
 
 
