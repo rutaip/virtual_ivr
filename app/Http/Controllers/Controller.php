@@ -21,8 +21,7 @@ class Controller extends BaseController
      */
     public function __construct()
     {
-        view()->composer('*', function($view)
-        {
+        view()->composer('*', function ($view) {
             $view->with('signedIn', Auth::check());
             $view->with('user_logged', Auth::user());
 
@@ -31,18 +30,18 @@ class Controller extends BaseController
             $balance = UserBalance::where('user_id', $register_user)->first();
 
 
-
-            if(!isset($balance)){
+            if (!isset($balance)) {
                 $credito = '0';
-            }else{
+            } else {
                 $credito = $balance->balance;
             }
 
             $view->with('balance', $credito);
         });
 
-
-
+        view()->composer('emails', function ($view) {
+            $register_user = null;
+        });
 
 
     }
