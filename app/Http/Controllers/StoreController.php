@@ -71,7 +71,7 @@ class StoreController extends Controller
             //return $signature . ' ' .$order . ' ' . $total;
 
             return view('store.payu', compact('amount', 'months', 'subtotal', 'tax', 'total', 'user_email',
-                'order', 'merchantid', 'accountid', 'apikey', 'currency', 'signature', 'payu_url'));
+                'order', 'merchantid', 'accountid', 'apikey', 'currency', 'signature', 'payu_url', 'payu_test'));
         }
         else {
 
