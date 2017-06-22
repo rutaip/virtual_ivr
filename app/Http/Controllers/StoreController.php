@@ -63,13 +63,14 @@ class StoreController extends Controller
             $accountid = env('PAYU_ACCOUNTID');
             $apikey = env('PAYU_APIKEY');
             $currency = 'MXN';
+            $payu_url = env('PAYU_URL');
             //signature = “ApiKey~merchantId~referenceCode~amount~currency”
             $signature = md5($apikey.'~'.$merchantid.'~'.$order.'~'.$total.'~'.$currency);
 
             //return $signature . ' ' .$order . ' ' . $total;
 
             return view('store.payu', compact('amount', 'months', 'subtotal', 'tax', 'total', 'user_email',
-                'order', 'merchantid', 'accountid', 'apikey', 'currency', 'signature'));
+                'order', 'merchantid', 'accountid', 'apikey', 'currency', 'signature', 'payu_url'));
         }
         else {
 
