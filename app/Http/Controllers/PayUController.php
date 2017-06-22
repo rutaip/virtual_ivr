@@ -181,7 +181,7 @@ class PayUController extends Controller
                 ]);
             }
 
-            Mail::to($user_owner->email)->send(new OrderConfirmation($payment));
+            //Mail::to($user_owner->email)->send(new OrderConfirmation($payment));
 
         }
         elseif ($request->state_pol == '6'){
