@@ -39,39 +39,7 @@ class PayUController extends Controller
 
         if ($_REQUEST['transactionState'] == 4 ) {
             $estadoTx = "Transacción aprobada";
-            $payment = Payment::where('transaction_id', $transactionId)
-                ->where('status', '1')
-                ->first();
 
-
-            if ($payment == '') {
-                return redirect('payments');
-            }
-
-            $payment->status = '2';
-            $payment->save();
-
-            $order = Order::where('order', $payment->order_id)->first();
-            $order->status = '2';
-            $order->save();
-
-
-            $user_balance = UserBalance::firstOrNew(['user_id' => $payment->user_id]);
-
-            if ($user_balance->exists) {
-                $user_balance->update([
-                    'balance' => $user_balance->balance + $payment->amount,
-                    'expiration' => Carbon::now('America/Mexico_City')->addYear()
-                ]);
-            } else {
-                $user_balance->create([
-                    'user_id' => $payment->user_id,
-                    'balance' => $payment->amount,
-                    'expiration' => Carbon::now('America/Mexico_City')->addYear()
-                ]);
-            }
-
-            Mail::to(Auth::user()->email)->send(new OrderConfirmation($payment));
 
             flash('Pago exitoso!', 'success');
 
@@ -172,7 +140,47 @@ class PayUController extends Controller
 
     public function confirmation(Request $request){
 
-        Log::info($request->state_pol);
+        Log::info($request->all());
+ /*
+        Payment::firstOrCreate(['transaction_id' => $transactionId],['user_id' => Auth::user()->id, 'payment_method' => 'PayU', 'amount' => $TX_VALUE, 'status' => '1', 'transaction_id' => $transactionId, 'order_id' => $request->reference_sale]);
+
+        if($request->state_pol == '4'){
+            $payment = Payment::where('order_id', $request->reference_sale)
+                ->where('status', '1')
+                ->first();
+
+
+            if ($payment == '') {
+                return redirect('payments');
+            }
+
+            $payment->status = '2';
+            $payment->save();
+
+            $order = Order::where('order', $payment->order_id)->first();
+            $order->status = '2';
+            $order->save();
+
+
+            $user_balance = UserBalance::firstOrNew(['user_id' => $payment->user_id]);
+
+            if ($user_balance->exists) {
+                $user_balance->update([
+                    'balance' => $user_balance->balance + $payment->amount,
+                    'expiration' => Carbon::now('America/Mexico_City')->addYear()
+                ]);
+            } else {
+                $user_balance->create([
+                    'user_id' => $payment->user_id,
+                    'balance' => $payment->amount,
+                    'expiration' => Carbon::now('America/Mexico_City')->addYear()
+                ]);
+            }
+
+            Mail::to(Auth::user()->email)->send(new OrderConfirmation($payment));
+
+        }
+ */
 
 
 
