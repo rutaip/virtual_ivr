@@ -117,7 +117,35 @@ class MPagoController extends Controller
 
                 Mail::to($user_owner->email)->send(new OrderConfirmation($payment));
             }
+            elseif($merchant_order_info["response"]["payments"]['0']['status'] == 'rejected'){
 
+                if ($order == '') {
+                    return abort('500');
+                }
+
+                $order->status = '3';
+                $order->save();
+
+            }
+            elseif($merchant_order_info["response"]["payments"]['0']['status'] == 'cancelled'){
+
+                if ($order == '') {
+                    return abort('500');
+                }
+
+                $order->status = '5';
+                $order->save();
+
+            }
+            else{
+                if ($order == '') {
+                    return abort('500');
+                }
+
+                $order->status = '4';
+                $order->save();
+
+            }
 
         }
 
