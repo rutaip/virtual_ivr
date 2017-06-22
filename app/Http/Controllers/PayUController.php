@@ -130,9 +130,18 @@ class PayUController extends Controller
 
     public function confirmation(Request $request){
 
-        Log::info($request->all());
+        Log::info($request->transaction_id);
+        Log::info($request->value);
+        Log::info($request->reference_sale);
 
-        Payment::firstOrCreate(['transaction_id' => $request->transaction_id],['user_id' => Auth::user()->id, 'payment_method' => 'PayU', 'amount' => $request->value, 'status' => '1', 'transaction_id' => $request->transaction_id, 'order_id' => $request->reference_sale]);
+        Payment::firstOrCreate(['transaction_id' => $request->transaction_id],
+            ['user_id' => Auth::user()->id,
+                'payment_method' => 'PayU',
+                'amount' => $request->value,
+                'status' => '1',
+                'transaction_id' => $request->transaction_id,
+                'order_id' => $request->reference_sale
+            ]);
 
         /*
 
