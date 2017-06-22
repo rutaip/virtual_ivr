@@ -21,6 +21,18 @@ class MPagoController extends Controller
         return view('store.create');
     }
 
+    public function success(){
+        return view('store.confirmation');
+    }
+
+    public function pending(){
+        return view('store.pending');
+    }
+
+    public function denied(){
+        return view('store.denied');
+    }
+
 
 
     public function confirmation(Request $request){
@@ -51,6 +63,8 @@ class MPagoController extends Controller
         if ($merchant_order_info["status"] == 200) {
 
             //Mail::to('erick.nava@fastcode.today')->send(new OrderDelivery());
+
+            Log::info($merchant_order_info);
 
             Log::info($merchant_order_info["response"]["payments"]);
             Log::info($merchant_order_info["response"]["shipments"]);

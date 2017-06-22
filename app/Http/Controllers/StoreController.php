@@ -240,9 +240,9 @@ class StoreController extends Controller
                 "email" => Auth::user()->email,
             ),
             "back_urls" => array(
-                "success" => url('store/confirmation') . '/' . 'MP-' . $order,
-                "pending" => url('store/pending') . '/' . $order,
-                "failure" => url('store/denied') . '/' . $order,
+                "success" => url('mercado/success') . '/' . 'MP-' . $order,
+                "pending" => url('mercado/pending') . '/' . $order,
+                "failure" => url('mercado/denied') . '/' . $order,
             ),
             'auto_return' => 'all',
             'notification_url' => url('mercado/confirmation'),

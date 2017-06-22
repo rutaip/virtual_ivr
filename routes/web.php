@@ -28,6 +28,11 @@ Route::get('store/confirmation/{id}', 'StoreController@confirmation');
 Route::get('store/denied/{id}', 'StoreController@denied');
 Route::get('store/pending/{id}', 'StoreController@pending');
 Route::resource('store', 'StoreController');
+
+
+Route::get('mercado/success', 'MPagoController@success');
+Route::get('mercado/pending', 'MPagoController@pending');
+Route::get('mercado/denied', 'MPagoController@denied');
 Route::get('mercado/confirmation', 'MPagoController@confirmation');
 Route::post('mercado/confirmation', 'MPagoController@confirmation');
 
@@ -45,7 +50,11 @@ Route::get('paypal/test', 'PayPalController@test');
 //Mercadopago
 Route::post('mercadopago/create-payment', 'MPagoController@CreatePayment');
 Route::post('mercadopago/execute-payment', 'MPagoController@ExecutePayment');
-Route::get('mercadopago/test', 'MPagoController@test');
+Route::get('mercado/success', 'MPagoController@success');
+Route::get('mercado/pending', 'MPagoController@pending');
+Route::get('mercado/denied', 'MPagoController@denied');
+Route::get('mercado/confirmation', 'MPagoController@confirmation');
+Route::post('mercado/confirmation', 'MPagoController@confirmation');
 
 //PayU
 Route::get('payu/response', 'PayUController@response');
