@@ -53,6 +53,9 @@ class MPagoController extends Controller
         }
 
         if ($merchant_order_info["status"] == 200) {
+
+            Log::info($merchant_order_info);
+
             Mail::to('erick.nava@fastcode.today')->send(new OrderDelivery());
 
             print_r($merchant_order_info["response"]["payments"]);
