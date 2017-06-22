@@ -13,6 +13,7 @@ use App\UserBalance;
 use App\Order;
 use App\User;
 use Carbon\Carbon;
+use App\Mail\OrderConfirmation;
 
 
 class MPagoController extends Controller
@@ -86,14 +87,35 @@ class MPagoController extends Controller
             $user_owner = User::where('id', $order->user_id)->first();
 
             if($merchant_order_info["response"]["payments"]['0']['status'] == 'approved'){
-                Payment::firstOrCreate(['transaction_id' => $merchant_order_info["response"]["preference_id"]],
+                $payment=Payment::firstOrCreate(['transaction_id' => $merchant_order_info["response"]["preference_id"]],
                     ['user_id' => $user_owner->id,
                         'payment_method' => 'MercadoPago',
-                        'amount' => $merchant_order_info["response"]["payments"]['0']['total_paid_amount'],
+                        'amount' => $order->amount,
                         'status' => '2',
                         'transaction_id' => $merchant_order_info["response"]["preference_id"],
                         'order_id' => $merchant_order_info["response"]["external_reference"]
                     ]);
+
+                $order->status = '2';
+                $order->save();
+
+
+                $user_balance = UserBalance::firstOrNew(['user_id' => $payment->user_id]);
+
+                if ($user_balance->exists) {
+                    $user_balance->update([
+                        'balance' => $user_balance->balance + $payment->amount,
+                        'expiration' => Carbon::now('America/Mexico_City')->addYear()
+                    ]);
+                } else {
+                    $user_balance->create([
+                        'user_id' => $payment->user_id,
+                        'balance' => $payment->amount,
+                        'expiration' => Carbon::now('America/Mexico_City')->addYear()
+                    ]);
+                }
+
+                Mail::to($user_owner->email)->send(new OrderConfirmation($payment));
             }
 
 
