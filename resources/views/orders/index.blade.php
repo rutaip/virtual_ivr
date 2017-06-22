@@ -35,6 +35,8 @@
                                             Rechazado
                                         @elseif($order->status === '4')
                                             Pendiente
+                                        @elseif($order->status === '5')
+                                            Expirado
                                         @else
                                             Creado
                                         @endif

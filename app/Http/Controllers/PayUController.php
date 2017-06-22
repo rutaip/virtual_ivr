@@ -49,17 +49,7 @@ class PayUController extends Controller
 
         else if ($_REQUEST['transactionState'] == 6 ) {
             $estadoTx = "Transacción rechazada";
-            $payment = Order::where('order', $referenceCode)
-                ->where('status', '1')
-                ->first();
 
-
-            if ($payment == '') {
-                return redirect('payments');
-            }
-
-            $payment->status = '3';
-            $payment->save();
 
 
             flash('Pago Declinado', 'error');
@@ -141,11 +131,11 @@ class PayUController extends Controller
     public function confirmation(Request $request){
 
         Log::info($request->all());
- /*
-        Payment::firstOrCreate(['transaction_id' => $transactionId],['user_id' => Auth::user()->id, 'payment_method' => 'PayU', 'amount' => $TX_VALUE, 'status' => '1', 'transaction_id' => $transactionId, 'order_id' => $request->reference_sale]);
+
+        Payment::firstOrCreate(['transaction_id' => $request->transaction_id],['user_id' => Auth::user()->id, 'payment_method' => 'PayU', 'amount' => $request->value, 'status' => '1', 'transaction_id' => $request->transaction_id, 'order_id' => $request->reference_sale]);
 
         if($request->state_pol == '4'){
-            $payment = Payment::where('order_id', $request->reference_sale)
+            $payment = Payment::where('transaction_id', $request->transaction_id)
                 ->where('status', '1')
                 ->first();
 
@@ -180,7 +170,35 @@ class PayUController extends Controller
             Mail::to(Auth::user()->email)->send(new OrderConfirmation($payment));
 
         }
- */
+        elseif ($request->state_pol == '6'){
+            $payment = Order::where('order', $request->reference_sale)
+                ->where('status', '1')
+                ->first();
+
+
+            if ($payment == '') {
+                return redirect('payments');
+            }
+
+            $payment->status = '3';
+            $payment->save();
+
+        }
+        else{
+            $payment = Order::where('order', $request->reference_sale)
+                ->where('status', '1')
+                ->first();
+
+
+            if ($payment == '') {
+                return redirect('payments');
+            }
+
+            $payment->status = '5';
+            $payment->save();
+
+        }
+
 
 
 
