@@ -68,7 +68,7 @@
                                 <input name="taxReturnBase" type="hidden" value="0">
                                 <input name="currency" type="hidden" value="{{$currency}}">
                                 <input name="signature" type="hidden" value="{{$signature}}">
-                                <input name="test" type="hidden" value="1">
+                                <input name="test" type="hidden" value="{{$payu_test}}">
                                 <input name="buyerEmail" type="hidden" value="{{$user_email}}">
                                 <input name="responseUrl" type="hidden" value="{{url('payu/response')}}">
                                 <input name="confirmationUrl" type="hidden" value="{{url('payu/confirmation')}}">

@@ -66,6 +66,7 @@ class StoreController extends Controller
             $payu_url = env('PAYU_URL');
             //signature = “ApiKey~merchantId~referenceCode~amount~currency”
             $signature = md5($apikey.'~'.$merchantid.'~'.$order.'~'.$total.'~'.$currency);
+            $payu_test = env('PAYU_TEST');
 
             //return $signature . ' ' .$order . ' ' . $total;
 
