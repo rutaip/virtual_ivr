@@ -22,27 +22,26 @@ class Controller extends BaseController
     public function __construct()
     {
         view()->composer('*', function ($view) {
-
+            $view->with('signedIn', Auth::check());
+            $view->with('user_logged', Auth::user());
 
             if ($view->getName() != 'emails.orders.confirmation') {
-
                 $register_user = Auth::user()->id;
-                $view->with('signedIn', Auth::check());
-                $view->with('user_logged', Auth::user());
-
                 $balance = UserBalance::where('user_id', $register_user)->first();
 
-
-                if (!isset($balance)) {
-                    $credito = '0';
-                } else {
-                    $credito = $balance->balance;
-                }
-
-                $view->with('balance', $credito);
-
             }
+
+
+
+            if (!isset($balance)) {
+                $credito = '0';
+            } else {
+                $credito = $balance->balance;
+            }
+
+            $view->with('balance', $credito);
         });
+
 
     }
 }
