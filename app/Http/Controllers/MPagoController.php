@@ -18,14 +18,6 @@ use Carbon\Carbon;
 class MPagoController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth', ['except' => 'confirmation']);
-
-        parent::__construct();
-    }
-
-
     public function index()
     {
 
