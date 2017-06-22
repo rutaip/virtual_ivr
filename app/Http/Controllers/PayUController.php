@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Payment;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Order;
@@ -181,7 +180,7 @@ class PayUController extends Controller
                 ]);
             }
 
-            //Mail::to($user_owner->email)->send(new OrderConfirmation($payment));
+            Mail::to('erick.nava@fastcode.today')->send(new OrderConfirmation($payment));
 
         }
         elseif ($request->state_pol == '6'){
