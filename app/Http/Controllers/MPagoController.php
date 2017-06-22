@@ -137,6 +137,16 @@ class MPagoController extends Controller
                 $order->save();
 
             }
+            elseif($merchant_order_info["response"]["payments"]['0']['status'] == 'refunded'){
+
+                if ($order == '') {
+                    return abort('500');
+                }
+
+                $order->status = '6';
+                $order->save();
+
+            }
             else{
                 if ($order == '') {
                     return abort('500');

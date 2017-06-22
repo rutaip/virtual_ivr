@@ -37,6 +37,8 @@
                                             Pendiente
                                         @elseif($order->status === '5')
                                             Expirado
+                                        @elseif($order->status === '6')
+                                            Reembolso
                                         @else
                                             Creado
                                         @endif
