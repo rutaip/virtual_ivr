@@ -27,25 +27,21 @@ class MPagoController extends Controller
 
         Log::info($request->all());
 
-        /*
+
 
         $mp = new MP(env('MERCADOPAGO_USER'), env('MERCADOPAGO_PASS'));
 
-        if (!isset($_GET["id"], $_GET["topic"]) || !ctype_digit($_GET["id"])) {
-            http_response_code(400);
-            return;
-        }
 
-        $topic = $_GET["topic"];
+        $topic = $request->topic;
         $merchant_order_info = null;
 
         switch ($topic) {
             case 'payment':
-                $payment_info = $mp->get("/collections/notifications/".$_GET["id"]);
+                $payment_info = $mp->get("/collections/notifications/".$request->id);
                 $merchant_order_info = $mp->get("/merchant_orders/".$payment_info["response"]["collection"]["merchant_order_id"]);
                 break;
             case 'merchant_order':
-                $merchant_order_info = $mp->get("/merchant_orders/".$_GET["id"]);
+                $merchant_order_info = $mp->get("/merchant_orders/".$request->id);
                 break;
             default:
                 $merchant_order_info = null;
@@ -63,7 +59,7 @@ class MPagoController extends Controller
             print_r($merchant_order_info["response"]["shipments"]);
         }
 
-*/
+
     }
 
 
