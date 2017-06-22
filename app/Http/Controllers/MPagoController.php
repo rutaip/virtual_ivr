@@ -81,7 +81,7 @@ class MPagoController extends Controller
             Log::info($merchant_order_info["response"]["shipments"]);
             Log::info($merchant_order_info);
 
-            $order = Order::where('order', $merchant_order_info["response"]["shipments"])
+            $order = Order::where('order', $merchant_order_info["response"]["external_reference"])
                 ->first();
             $user_owner = User::where('id', $order->user_id)->first();
 
