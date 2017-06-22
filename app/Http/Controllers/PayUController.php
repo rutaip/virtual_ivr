@@ -130,12 +130,16 @@ class PayUController extends Controller
 
     public function confirmation(Request $request){
 
-        Log::info($request->transaction_id);
-        Log::info($request->value);
-        Log::info($request->reference_sale);
+        Log::info($request->all());
+
+        $order = Order::where('order', $request->reference_sale)
+            ->first();
+
+        Log::info($order->user_id);
+
 
         Payment::firstOrCreate(['transaction_id' => $request->transaction_id],
-            ['user_id' => Auth::user()->id,
+            ['user_id' => $order->user_id,
                 'payment_method' => 'PayU',
                 'amount' => $request->value,
                 'status' => '1',
@@ -143,7 +147,7 @@ class PayUController extends Controller
                 'order_id' => $request->reference_sale
             ]);
 
-        /*
+
 
         if($request->state_pol == '4'){
             $payment = Payment::where('transaction_id', $request->transaction_id)
@@ -210,7 +214,7 @@ class PayUController extends Controller
 
         }
 
-*/
+
 
 
     }
