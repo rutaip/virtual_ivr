@@ -57,8 +57,6 @@ class MPagoController extends Controller
     public function confirmation(Request $request)
     {
 
-        Log::info($request->all());
-
         $mp = new MP(env('MERCADOPAGO_USER'), env('MERCADOPAGO_PASS'));
 
 
@@ -85,11 +83,16 @@ class MPagoController extends Controller
         if ($merchant_order_info["status"] == 200) {
 
             //Mail::to('erick.nava@fastcode.today')->send(new OrderDelivery());
-            $order = Order::where('order', $request->reference_sale)
+
+            Log::info($merchant_order_info["response"]["payments"]);
+            Log::info($merchant_order_info["response"]["shipments"]);
+            Log::info($merchant_order_info);
+
+            $order = Order::where('order', $merchant_order_info["response"]["shipments"])
                 ->first();
             $user_owner = User::where('id', $order->user_id)->first();
 
-            Log::info($merchant_order_info);
+
 
             if ($merchant_order_info['response']['payments']['status'] == 'approved') {
 
@@ -167,8 +170,7 @@ class MPagoController extends Controller
 
             }
 
-            Log::info($merchant_order_info["response"]["payments"]);
-            Log::info($merchant_order_info["response"]["shipments"]);
+
         }
 
 
