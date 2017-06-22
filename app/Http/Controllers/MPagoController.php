@@ -85,6 +85,17 @@ class MPagoController extends Controller
                 ->first();
             $user_owner = User::where('id', $order->user_id)->first();
 
+            if($merchant_order_info["response"]["payments"]['status'] == 'approved'){
+                Payment::firstOrCreate(['transaction_id' => $merchant_order_info["response"]["preference_id"]],
+                    ['user_id' => $user_owner->id,
+                        'payment_method' => 'MercadoPago',
+                        'amount' => $merchant_order_info["response"]["payments"]['total_paid_amount'],
+                        'status' => '2',
+                        'transaction_id' => $merchant_order_info["response"]["preference_id"],
+                        'order_id' => $merchant_order_info["response"]["external_reference"]
+                    ]);
+            }
+
 
         }
 
