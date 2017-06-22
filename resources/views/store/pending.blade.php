@@ -33,8 +33,7 @@
                                 <br><br>
                                 <br>
                                 <div>
-                                    {{Html::link('ivrs', 'Activar IVR',['class' => 'btn btn-flat btn-primary'])}}
-                                    {{Html::link('payments', 'Ver compras', ['class' => 'btn btn-flat btn-primary'])}}
+                                    {{Html::link('orders', 'Ver compras', ['class' => 'btn btn-flat btn-primary'])}}
                                 </div>
 
                             </div>

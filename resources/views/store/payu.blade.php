@@ -75,7 +75,7 @@
 
                                 <br><br><br><br>
                                 <div style="text-align: center;"></div>
-                                {!! Form::submit('Pagar') !!}
+                                <input type="image" border="0" alt="" src="http://www.payulatam.com/img-secure-2015/boton_pagar_mediano.png" onClick="this.form.urlOrigen.value = window.location.href;"/>
                                 <br>
                                 {!! Form::close() !!}
                             </div>
