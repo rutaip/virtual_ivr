@@ -77,7 +77,7 @@
     <script>
         paypal.Button.render({
 
-            env: 'sandbox', // Optional: specify 'sandbox' environment
+            env: '{{env('PAYPAL_ENV')}}', // Optional: specify 'sandbox' environment
 
             locale: 'es_MX',
 
@@ -89,8 +89,8 @@
             },
 
             client: {
-                sandbox: 'AZe9DiThNRisC5g4u2qYAQQovHSZMoOqnjLFUpGLgz5Dc27fJ2OOFkPq79k3TRLojktSESm_6iUWxHrX',
-                production: 'AV3zqgfOG2_r8J3y22VFnNW4vpmHCOZIQbks41Ubq3Mkj2Epqtq7-XJadGHvDnNdHz55f_S1gZw_8RrA'
+                sandbox: '{{env('PAYPAL_SANDBOX')}}',
+                production: '{{env('PAYPAL_CLIENTID')}}'
             },
 
 

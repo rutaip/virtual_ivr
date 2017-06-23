@@ -23,19 +23,11 @@ Route::get('verifyemail/{token}', 'Auth\RegisterController@verify');
 
 Route::resource('extensions', 'ExtensionsController');
 
-
+//Store
 Route::get('store/confirmation/{id}', 'StoreController@confirmation');
 Route::get('store/denied/{id}', 'StoreController@denied');
 Route::get('store/pending/{id}', 'StoreController@pending');
 Route::resource('store', 'StoreController');
-
-
-Route::get('mercado/success', 'MPagoController@success');
-Route::get('mercado/pending', 'MPagoController@pending');
-Route::get('mercado/denied', 'MPagoController@denied');
-Route::get('mercado/confirmation', 'MPagoController@confirmation');
-Route::post('mercado/confirmation', 'MPagoController@confirmation');
-
 
 
 Route::resource('payments', 'PaymentsController');
@@ -80,5 +72,3 @@ Route::get('roles/{id}/permissions', 'RolesController@permissions');
 Route::post('roles/role_permissions', 'RolesController@rolePermissions');
 Route::post('roles/role_permissions_delete', 'RolesController@removePermissions');
 Route::resource('roles', 'RolesController');
-Route::resource('roles', 'RolesController');
-

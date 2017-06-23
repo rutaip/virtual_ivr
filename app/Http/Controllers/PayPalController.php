@@ -31,7 +31,7 @@ class PayPalController extends Controller
         $tax = $total - $subtotal;
 
 
-        $url = 'https://api.sandbox.paypal.com/';
+        $url = env('PAYPAL_URL');
         $paypal_userid = env('PAYPAL_CLIENTID');
         $paypal_secret = env('PAYPAL_SECRET');
         $key = base64_encode($paypal_userid . ':' . $paypal_secret);
@@ -64,43 +64,43 @@ class PayPalController extends Controller
 
         /**
          * Web Experience
-
-
-        $client = new Client([
-            // Base URI is used with relative requests
-            'base_uri' => $url,
-            // You can set any number of default request options.
-            //'timeout'  => 2.0,
-        ]);
-
-        $url_data = [
-            'name' => 'Fastcode_checkout',
-            'presentation' => [
-                'brand_name' => 'FASTCODE.TODAY SAS',
-                'locale_code' => 'US'
-            ],
-            'input_fields' => [
-                'no_shipping' => '0',
-                'address_override' => '1'
-            ],
-            'flow_config' => [
-                'landing_page_type' => 'billing',
-                'bank_txn_pending_url' => 'http://www.yeowza.com'
-            ]
-        ];
-
-        $response = $client->request('POST', 'v1/payment-experience/web-profiles', [
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . $token
-            ],
-            'body' => json_encode($url_data),
-
-        ]);
-
-
-        $elements = json_decode($response->getBody());
-        */
+         *
+         *
+         * $client = new Client([
+         * // Base URI is used with relative requests
+         * 'base_uri' => $url,
+         * // You can set any number of default request options.
+         * //'timeout'  => 2.0,
+         * ]);
+         *
+         * $url_data = [
+         * 'name' => 'Fastcode_checkout',
+         * 'presentation' => [
+         * 'brand_name' => 'FASTCODE.TODAY SAS',
+         * 'locale_code' => 'US'
+         * ],
+         * 'input_fields' => [
+         * 'no_shipping' => '0',
+         * 'address_override' => '1'
+         * ],
+         * 'flow_config' => [
+         * 'landing_page_type' => 'billing',
+         * 'bank_txn_pending_url' => 'http://www.yeowza.com'
+         * ]
+         * ];
+         *
+         * $response = $client->request('POST', 'v1/payment-experience/web-profiles', [
+         * 'headers' => [
+         * 'Content-Type' => 'application/json',
+         * 'Authorization' => 'Bearer ' . $token
+         * ],
+         * 'body' => json_encode($url_data),
+         *
+         * ]);
+         *
+         *
+         * $elements = json_decode($response->getBody());
+         */
 
         /**
          * Payment Request
@@ -135,10 +135,10 @@ class PayPalController extends Controller
                 'item_list' => [
                     'items' => array([
                         'name' => 'Virtual IVR',
-                        'description' => 'Recarga de Servicio Virtual IVR ' . number_format($subtotal,2) . ' + iva',
+                        'description' => 'Recarga de Servicio Virtual IVR ' . number_format($subtotal, 2) . ' + iva',
                         'quantity' => '1',
-                        'price' => number_format($subtotal,2),
-                        'tax' => number_format($tax,2),
+                        'price' => number_format($subtotal, 2),
+                        'tax' => number_format($tax, 2),
                         'sku' => '1',
                         'currency' => 'MXN'
                     ])
@@ -168,9 +168,6 @@ class PayPalController extends Controller
         });
 
 
-
-
-
         $response = $client->request('POST', 'v1/payments/payment', [
             'headers' => [
                 'Content-Type' => 'application/json',
@@ -186,24 +183,22 @@ class PayPalController extends Controller
         $PaymentId = ['paymentID' => $elements->id];
 
 
-
         Payment::create(['user_id' => $customer, 'payment_method' => 'Paypal', 'amount' => $subtotal, 'status' => '1', 'transaction_id' => $elements->id, 'order_id' => $order]);
 
         return $PaymentId;
 
     }
 
-    public function ExecutePayment(Request $data) {
+    public function ExecutePayment(Request $data)
+    {
 
-        $url = 'https://api.sandbox.paypal.com/';
+        $url = env('PAYPAL_URL');
         $paypal_userid = env('PAYPAL_CLIENTID');
         $paypal_secret = env('PAYPAL_SECRET');
         $key = base64_encode($paypal_userid . ':' . $paypal_secret);
 
         $paymnet_id = $data->paymentID;
         $payer_id = ['payer_id' => $data->payerID];
-
-
 
 
         $client = new Client([
@@ -237,7 +232,7 @@ class PayPalController extends Controller
             //'timeout'  => 2.0,
         ]);
 
-        $response = $client->request('POST', 'v1/payments/payment/' .$paymnet_id. '/execute/', [
+        $response = $client->request('POST', 'v1/payments/payment/' . $paymnet_id . '/execute/', [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Authorization' => 'Bearer ' . $elements->access_token
@@ -249,58 +244,7 @@ class PayPalController extends Controller
 
         $PaymentId = ['paymentID' => $elements->id];
 
-        return $PaymentId;    }
-
-    public function test() {
-
-
-        $data = [
-            'intent' => 'sale',
-            'payer' => [
-                'payment_method' => 'paypal'
-            ],
-            'transactions' => array([
-                'amount' => [
-                    'total' => '33.00',
-                    'currency' => 'USD',
-                    'details' => [
-                        'subtotal' => '30.00',
-                        'tax' => '1.00',
-                        'shipping' => '1.00',
-                        'handling_fee' => '1.00',
-                        'shipping_discount' => '-1.00',
-                        'insurance' => '1.00'
-                    ]
-                ],
-                'description' => 'Descripción del pago',
-                'custom' => 'EBAY_EMS_90048630024435',
-                'invoice_number' => '48787589',
-                'payment_options' => [
-                    'allowed_payment_method' => 'INSTANT_FUNDING_SOURCE'
-                ],
-                'soft_descriptor' => '123456',
-                'item_list' => [
-                    'items' => array([
-                        'name' => 'Virtual IVR',
-                        'description' => 'Pago de Servicio Virtual IVR Paquete 455',
-                        'quantity' => '1',
-                        'price' => '3',
-                        'tax' => '1',
-                        'sku' => '1',
-                        'currency' => 'USD'
-                    ])
-                ],
-            ]),
-            'redirect_urls' => [
-                'return_url' => 'http://www.paypal.com/return',
-                'cancel_url' => 'http://www.paypal.com/cancel'
-
-            ],
-            'note_to_payer' => 'Contactenos para cualquier pregunta'
-        ];
-
-        return $data;
-
+        return $PaymentId;
     }
 
 }
