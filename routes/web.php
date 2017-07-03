@@ -23,16 +23,16 @@ Route::get('verifyemail/{token}', 'Auth\RegisterController@verify');
 
 Route::resource('extensions', 'ExtensionsController');
 
+
+Route::resource('payments', 'PaymentsController');
+Route::resource('orders', 'OrdersController');
+Route::resource('cdr', 'CdrController');
+
 //Store
 Route::get('store/confirmation/{id}', 'StoreController@confirmation');
 Route::get('store/denied/{id}', 'StoreController@denied');
 Route::get('store/pending/{id}', 'StoreController@pending');
 Route::resource('store', 'StoreController');
-
-
-Route::resource('payments', 'PaymentsController');
-Route::resource('orders', 'OrdersController');
-
 
 //Paypal
 Route::post('paypal/create-payment', 'PayPalController@CreatePayment');
@@ -51,7 +51,6 @@ Route::post('mercado/confirmation', 'MPagoController@confirmation');
 //PayU
 Route::get('payu/response', 'PayUController@response');
 Route::post('payu/confirmation', 'PayUController@confirmation');
-
 
 
 Route::resource('phones', 'PhonesController');

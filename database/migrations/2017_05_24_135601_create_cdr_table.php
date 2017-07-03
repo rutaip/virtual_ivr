@@ -15,7 +15,7 @@ class CreateCdrTable extends Migration
     {
         Schema::create('cdr', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('calldate')->default(\Carbon\Carbon::now('America/Mexico_City'));
+            $table->dateTime('calldate');
             $table->string('clid', 80)->default('');
             $table->string('src', 80)->default('');
             $table->string('dst', 80)->default('');
