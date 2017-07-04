@@ -14,7 +14,6 @@ class CreateCdrTable extends Migration
     public function up()
     {
         Schema::create('cdr', function (Blueprint $table) {
-            $table->increments('id');
             $table->dateTime('calldate');
             $table->string('clid', 80)->default('');
             $table->string('src', 80)->default('');
