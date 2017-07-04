@@ -10,7 +10,7 @@ class CdrController extends Controller
 
     public function index()
     {
-        $cdr = Cdr::all();
+        $cdr = Cdr::orderBy('calldate')->get();
 
         return $cdr;
     }
