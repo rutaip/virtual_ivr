@@ -37,6 +37,7 @@ class CreateCdrTable extends Migration
             $table->string('dstdid', 80)->default('');
             $table->string('calltype', 80)->default('');
             $table->string('hangupcause', 80)->default('');
+            $table->timestamps();
 
 
 
